@@ -1,0 +1,96 @@
+h1{
+    color: red;
+}
+
+body{
+    color: white;
+    background: 
+     url(/public/images/backgrounds/msheader.png) center top repeat-x,
+     url(/public/images/backgrounds/msbg.gif) center;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav{
+    margin-left: 3%;
+    background-color: black;
+    border: 1px solid darkblue;
+    padding: 30px;
+}
+
+main{
+    background: url(/public/images/containerbgs/Sin\ título-2.png) repeat;
+    margin-top: 3%;
+    margin-left: 20%;
+    padding: 20px;
+    width: 55%;
+    height: 400px;
+    overflow: scroll;
+    overflow-x: hidden;
+    color: pink;
+    border: 20px solid black;
+    border-image: url(/public/images/borders/testborder2.png) 33% repeat;
+    border-image-slice: 33%;
+}
+
+.content{
+    flex-direction: row;
+    margin-top: 72px;
+}
+
+.row{
+    display: flex;
+}
+
+.nav_image{
+    border: darkblue 1px;
+}
+
+.pin-container{
+    background: black;
+    width: 30%;
+    margin-left: 20%;
+    display: flex;
+    align-items: center;
+    border: 30px solid;
+    border-image: url(/public/images/borders/testborder3.png) 33% repeat;
+    border-image-slice: 20%;
+}
+
+.top{
+    display: flex;
+}
+
+.top > h2{
+    margin-left: 10%;
+}
+
+#puni{
+    position: fixed;
+    bottom: 0;
+    right:0;
+}
+
+.speech{
+    color: black;
+    position: relative;
+	max-width: 20em;
+	background-color: #fff;
+	padding: 1.125em 1.5em;
+	font-size: 1.25em;
+	border-radius: 1rem;
+    box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+}
+
+.speech::before {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	top: 100%;
+	border: .75rem solid transparent;
+	border-bottom: none;
+	border-top-color: #fff;
+	filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+}
