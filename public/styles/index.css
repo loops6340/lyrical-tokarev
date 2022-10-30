@@ -8,56 +8,55 @@
     margin-right: 9px;
 }
 
+#alice{
+    animation: enteralice 3.5s linear, float 4s linear infinite;
+    animation-delay: 0s, 6s;
+}
+
 #shinki{
     margin-bottom: 20px;
     animation: entershinki 5s linear, floatshinki 4.3s linear infinite;
     animation-delay: 0s, 5.5s;
 }
 
-
-@keyframes entershinki {
-	0% {
-		transform: translatey(-100px);
-	}
-    75% {
-        transform: translatey(-20px);
-    }
-    89% {
-        transform: translatey(-8px);
-    }
-	100% {
-		transform: translatey(0px);
-	}
-}
-
-#alice{
-    animation: enteralice 1.5s linear, float 4s linear infinite;;
+#yume{
+    animation: enteryume 3.5s linear, float 4s linear infinite;
     animation-delay: 0s, 6s;
 }
+
+
 
 @keyframes enteralice {
 	0% {
 		transform: translate(-100px, -100px);
 	}
     75% {
-        transform: translate(-13px, -13px);
+        transform: translate(-5px, -20px);
     }
 	100% {
 		transform: translate(0px, 0px);
 	}
 }
 
-#yume{
-    animation: enteryume 1.5s linear, float 4s linear infinite;;
-    animation-delay: 0s, 6s;
+@keyframes entershinki {
+	0% {
+		transform: translatey(-100px);
+	}
+    75% {
+        transform: translatey(13px);
+    }
+	100% {
+		transform: translatey(0px);
+	}
 }
+
 
 @keyframes enteryume {
 	0% {
 		transform: translate(100px, -100px);
 	}
     75% {
-        transform: translate(13px, -13px);
+        transform: translate(5px, -20px);
     }
 	100% {
 		transform: translatey(0px, 0px);
@@ -65,26 +64,20 @@
 }
 
 @keyframes float {
-	0% {
+	0%, 100% {
 		transform: translatey(0px);
 	}
 	50% {
 		transform: translatey(-15px);
 	}
-	100% {
-		transform: translatey(0px);
-	}
 }
 
 @keyframes floatshinki {
-	0% {
+	0%, 100% {
 		transform: translatey(0px);
 	}
 	50% {
 		transform: translatey(-20px);
-	}
-	100% {
-		transform: translatey(0px);
 	}
 }
 
@@ -104,12 +97,13 @@ nav{
     background-color: black;
     border: 1px solid darkblue;
     padding: 30px;
+    height: 100%;
 }
 
 main{
     background: url(/public/images/containerbgs/Sin\ título-2.png) repeat;
-    margin-top: 3%;
-    margin-left: 20%;
+    margin-top: 5%;
+    margin-left: 10%;
     padding: 20px;
     width: 55%;
     height: 400px;
@@ -134,15 +128,44 @@ main{
     border: darkblue 1px;
 }
 
+.top-gif-container{
+    margin-left: 3%;
+    display: flex;
+}
+
+.top-gif-container > *{
+    margin-left: 4px;
+    margin-right: 4px;
+    align-self: center;
+}
+
+.bottom-gif-container{
+    margin-top: 3%;
+    margin-left: 3%;
+    display: flex;
+    flex-direction: column; 
+}
+
+.bottom-gif-container > *{
+    margin-top:4px;
+    margin-left:4px;
+    align-self: center;
+}
+
 .pin-container{
+    margin-top: 13px;
     border: 30px solid;
     border-image: url(/public/images/borders/testborder3.png) repeat;
     border-image-slice: 20%;
     border-image-outset: 9px;
     width: 30%;
-    margin-left: 20%;
+    margin-left: 14%;
     background: url("/public/images/containerbgs/reimusweep.gif");
     background-position: 25% 30%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .pin-container > marquee{
@@ -151,6 +174,10 @@ main{
 }
 
 .top{
+    display: flex;
+}
+
+.bottom{
     display: flex;
 }
 
