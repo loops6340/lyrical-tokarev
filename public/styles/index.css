@@ -48,14 +48,18 @@ main{
 }
 
 .pin-container{
-    background: black;
+    background: url("/public/images/containerbgs/reimusweep.gif");
+    background-position: 25% 30%;
     width: 30%;
     margin-left: 20%;
-    display: flex;
-    align-items: center;
     border: 30px solid;
-    border-image: url(/public/images/borders/testborder3.png) 33% repeat;
+    border-image: url(/public/images/borders/testborder3.png) repeat;
     border-image-slice: 20%;
+    border-image-outset: 5px;
+}
+
+.pin-container > marquee{
+    /* background-color: black; */
 }
 
 .top{
@@ -70,6 +74,8 @@ main{
     position: fixed;
     bottom: 0;
     right:0;
+    width: 300px;
+    height: 400px;
 }
 
 .speech{
@@ -80,7 +86,7 @@ main{
 	padding: 1.125em 1.5em;
 	font-size: 1.25em;
 	border-radius: 1rem;
-    box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2);
+    box-shadow:	0 0.125rem 0.5rem rgba(0, 0, 0, .3), 0 0.0625rem 0.125rem rgba(0, 0, 0, .2)
 }
 
 .speech::before {
@@ -89,8 +95,9 @@ main{
 	width: 0;
 	height: 0;
 	top: 100%;
+    left: 50%;
 	border: .75rem solid transparent;
 	border-bottom: none;
 	border-top-color: #fff;
-	filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+	filter: drop-shadow(0 0.0625rem 0.0625rem rgba(0, 0, 0, .1));
 }
