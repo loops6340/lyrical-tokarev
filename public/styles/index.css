@@ -1,6 +1,93 @@
-h1{
-    color: red;
+.top-sprites{
+    margin-top: 20px;
 }
+
+
+.top-sprites > *{
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+#shinki{
+    margin-bottom: 20px;
+    animation: entershinki 5s linear, floatshinki 4.3s linear infinite;
+    animation-delay: 0s, 5.5s;
+}
+
+
+@keyframes entershinki {
+	0% {
+		transform: translatey(-100px);
+	}
+    75% {
+        transform: translatey(-20px);
+    }
+    89% {
+        transform: translatey(-8px);
+    }
+	100% {
+		transform: translatey(0px);
+	}
+}
+
+#alice{
+    animation: enteralice 1.5s linear, float 4s linear infinite;;
+    animation-delay: 0s, 6s;
+}
+
+@keyframes enteralice {
+	0% {
+		transform: translate(-100px, -100px);
+	}
+    75% {
+        transform: translate(-13px, -13px);
+    }
+	100% {
+		transform: translate(0px, 0px);
+	}
+}
+
+#yume{
+    animation: enteryume 1.5s linear, float 4s linear infinite;;
+    animation-delay: 0s, 6s;
+}
+
+@keyframes enteryume {
+	0% {
+		transform: translate(100px, -100px);
+	}
+    75% {
+        transform: translate(13px, -13px);
+    }
+	100% {
+		transform: translatey(0px, 0px);
+	}
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-15px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
+@keyframes floatshinki {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
 
 body{
     color: white;
@@ -36,7 +123,7 @@ main{
 
 .content{
     flex-direction: row;
-    margin-top: 72px;
+    margin-top: 50px;
 }
 
 .row{
@@ -48,18 +135,19 @@ main{
 }
 
 .pin-container{
-    background: url("/public/images/containerbgs/reimusweep.gif");
-    background-position: 25% 30%;
-    width: 30%;
-    margin-left: 20%;
     border: 30px solid;
     border-image: url(/public/images/borders/testborder3.png) repeat;
     border-image-slice: 20%;
-    border-image-outset: 5px;
+    border-image-outset: 9px;
+    width: 30%;
+    margin-left: 20%;
+    background: url("/public/images/containerbgs/reimusweep.gif");
+    background-position: 25% 30%;
 }
 
 .pin-container > marquee{
-    /* background-color: black; */
+    margin-left: -23px;
+    margin-right: -23px;
 }
 
 .top{
@@ -101,3 +189,4 @@ main{
 	border-top-color: #fff;
 	filter: drop-shadow(0 0.0625rem 0.0625rem rgba(0, 0, 0, .1));
 }
+
