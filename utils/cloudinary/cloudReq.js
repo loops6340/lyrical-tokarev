@@ -17,7 +17,7 @@ async function cloudReq(app){
       }
       app.locals.gifs = gifs
       app.locals.indexBarGifs = gifs.filter(gif => {
-        return gif.height <= 100 && gif.width <= 100;
+        return gif.height <= 65 && gif.width <= 70;
       })
       console.log('gifs cargados')
      }catch(e){
