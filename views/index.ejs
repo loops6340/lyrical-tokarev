@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lyrical Tokarev</title>
     <link rel="stylesheet" href="/public/styles/index.css">
+    <script src="/public/scripts/crawler.js"></script>
 </head>
 <body>
 
@@ -47,8 +48,9 @@
                         <h1>:(</h1>
                         <% } %>
                     </div>
+
                     <div class="button-container">
-                        <marquee id="marquee">
+                        <div class="marquee" id="mycrawler">
                             <%- include("components/buttons/marquee", {src: 'lukesmith.gif', alt: 'FIRST INSPIRATION', link: 'https://lukesmith.xyz/'}) %>
                             <%- include("components/buttons/marquee", {src: 'wiby.gif', alt: 'BEST SEARCH ENGINE', link: 'https://www.wiby.me'}) %>
                             <%- include("components/buttons/marquee", {src: 'aagp-mini-bouton.gif', alt: 'MADE ME START THE GIF GALLERY', link: 'http://animegifs.free.fr/index2.html'}) %>
@@ -56,8 +58,10 @@
                             <%- include("components/buttons/marquee", {src: 'yobunbanner1.gif', alt: 'BEST SITE ON THE ENTIRE INTERNET', link: 'https://zanarkand.neocities.org/'}) %>
                             <%- include("components/buttons/marquee", {src: 'cherrysite.png', alt: '', link: 'https://cherrychan.neocities.org'}) %>
                             <%- include("components/buttons/marquee", {src: 'icongallery.gif', alt: '', link: 'https://anlucas.neocities.org/88x31Buttons.html'}) %>  
-                        </marquee>
+                        </div>
+
                     </div>
+
                 </div>
 
                     <div class="middle">
@@ -92,6 +96,7 @@
                             <%- include("components/buttons/button", {src: 'winrar.jpg', link:null}) %>
                             <%- include("components/buttons/button", {src: 'fubutton37.png', link:null}) %>
                             <%- include("components/buttons/button", {src: 'nwk.jpeg', link:null}) %>
+                            <%- include("components/buttons/button", {src: 'ico (1).webp', link:null}) %>
                         </div>
 
                     </div>
@@ -129,5 +134,6 @@
         <img src="/public/images/portraits/yume.png">
     </div>
     <script src="/public/scripts/headeranimation.js"></script>
+    <script src="/public/scripts/marquee.js"></script>
 </body>
 </html>

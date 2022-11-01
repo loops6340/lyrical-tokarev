@@ -202,23 +202,16 @@ main{
     justify-content: center;
     align-items: center;
     margin-top: 13px;
-    border: 45px solid;
-    border-image: url(/public/images/borders/th02frame.png) repeat;
-    border-image-slice: 33%;
-    border-image-outset: 9px;
-    width: 30%;
+    width: 338px;
     margin-left: 14%;
     background: url("/public/images/containerbgs/reimusweep.gif");
-    background-position: 25% 30%;
-    height: 40px;
+    height: 81px;
 }
 
-.button-container > marquee{
+.button-container > .marquee{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: -37px;
-    margin-right: -37px;
 }
 
 .top{
