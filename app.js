@@ -25,9 +25,11 @@ app.get("/", async (req, res) => {
   try{
     const geoReq = await axios.get(`https://api.findip.net/${ip}/?token=${process.env.GEO_TOKEN}`)
     const country = geoReq.data.country.names.en.toLowerCase()
-    await Visitor.create({ip, geoReq})
+    console.log(geoReq.data)
+    console.log()
+    await Visitor.create({ip, country})
     if(indexBarGifs){
-      indexBarGifs = shuffle(indexBarGifs, country)
+      indexBarGifs = shuffle(indexBarGifs)
     }
   }catch(e){
     console.log(e)

@@ -70,11 +70,13 @@ header{
     animation: fadeIn linear 1s;
     animation-delay: 5s;
     animation-fill-mode: forwards;
+    text-decoration: none;
 }
 
 .top-sprite > p:visited{
     opacity: 0;
     color: white;
+    text-decoration: none;
 }
 
 .top-sprite{
