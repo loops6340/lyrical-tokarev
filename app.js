@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.PORT;
 const path = require("path");
 const requestIp = require('request-ip');
+const fs = require('fs')
 const cloudReq = require('./utils/cloudinary/cloudReq');
 const shuffle = require("./utils/shuffle");
 const {conn, Visitor} = require('./db/db');
@@ -40,13 +41,25 @@ app.get("/", async (req, res) => {
     }
   }
 
-
-
   const visitorCount = await Visitor.count()
 
   res.render("index", ({indexBarGifs, visitorCount}));
 
 });
+
+app.get('/door', (_req, res) => {
+
+  let bgs = []
+
+  fs.readdir('./public/images/backgrounds/door', (err, files) =>{
+    if(err){
+      console.log(err)
+      files = ['ayana2']
+    }
+    bgs = files
+    res.status(200).send({bgs})
+  })
+})
 
 
 
