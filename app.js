@@ -12,8 +12,12 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 cloudReq(app)
 setInterval(async () => await cloudReq(app), 300000)
 
-app.get("/", (_req, res) => {
+app.get("/", (req, res) => {
   let {indexBarGifs} = app.locals
+  const requestIp = require('request-ip');
+  console.log(requestIp.getClientIp(req))
+
+
   if(indexBarGifs){
     indexBarGifs = shuffle(indexBarGifs)
   }
