@@ -203,7 +203,7 @@ main{
     align-items: center;
     margin-top: 13px;
     width: 338px;
-    margin-left: 14%;
+    margin-left: 10%;
     background: url("/public/images/containerbgs/reimusweep.gif");
     height: 81px;
 }
@@ -219,6 +219,7 @@ main{
 }
 
 .buttons{
+    margin-top: 5px;
     margin-left: 5%;
     display: flex;
 }
@@ -257,6 +258,16 @@ main{
     right:0;
     width: 300px;
     height: 400px;
+}
+
+.ads{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ads > img{
+    margin: 20px;
 }
 
 .speech{
