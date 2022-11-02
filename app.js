@@ -16,7 +16,7 @@ conn.sync()
 app.set("view engine", "ejs");
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(cors({
-  origin: 'https://lyricaltokarev.neocities.org/'
+  origin: 'https://neocities.org'
 }));
 
 cloudReq(app)
