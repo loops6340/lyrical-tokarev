@@ -25,14 +25,12 @@ app.get("/", async (req, res) => {
   try{
     const geoReq = await axios.get(`https://api.findip.net/${ip}/?token=${process.env.GEO_TOKEN}`)
     const country = geoReq.data.country.names.en.toLowerCase()
-    console.log(geoReq.data)
-    console.log()
     await Visitor.create({ip, country})
     if(indexBarGifs){
       indexBarGifs = shuffle(indexBarGifs)
     }
   }catch(e){
-    console.log(e)
+    console.log(e.message)
   }
 
   const visitorCount = await Visitor.count()
