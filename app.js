@@ -9,11 +9,15 @@ const cloudReq = require('./utils/cloudinary/cloudReq');
 const shuffle = require("./utils/shuffle");
 const {conn, Visitor} = require('./db/db');
 const axios = require('axios')
+const cors = require('cors');
 
 conn.sync()
 
 app.set("view engine", "ejs");
 app.use("/public", express.static(path.join(__dirname, "public")));
+app.use(cors({
+  origin: 'https://lyricaltokarev.neocities.org/'
+}));
 
 cloudReq(app)
 setInterval(async () => await cloudReq(app), 300000)
