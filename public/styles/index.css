@@ -42,6 +42,20 @@ header{
     margin-top: 7px;
 }
 
+.blackboard-text > *{
+    animation: rainbow-text-color-change linear 1.5s infinite;
+}
+
+@keyframes rainbow-text-color-change {
+    0%, 100% { color: red; }
+    14% { color: orange; }
+    28% { color: yellow; }
+    42% { color: green; }
+    56% { color: blue; }
+    70% { color: indigo; }
+    84% { color: violet; }
+  }
+
 .top-sprites{
     display: flex;
     justify-content: center;

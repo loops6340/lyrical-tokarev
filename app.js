@@ -3,8 +3,13 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT;
 const path = require("path");
+const requestIp = require('request-ip');
 const cloudReq = require('./utils/cloudinary/cloudReq');
 const shuffle = require("./utils/shuffle");
+const {conn, Visitor} = require('./db/db');
+const axios = require('axios')
+
+conn.sync()
 
 app.set("view engine", "ejs");
 app.use("/public", express.static(path.join(__dirname, "public")));
@@ -12,16 +17,26 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 cloudReq(app)
 setInterval(async () => await cloudReq(app), 300000)
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   let {indexBarGifs} = app.locals
-  const requestIp = require('request-ip');
-  console.log(requestIp.getClientIp(req))
 
+  const ip = requestIp.getClientIp(req)
 
-  if(indexBarGifs){
-    indexBarGifs = shuffle(indexBarGifs)
+  try{
+    const geoReq = await axios.get(`https://api.findip.net/${ip}/?token=${process.env.GEO_TOKEN}`)
+    const country = geoReq.data.country.names.en.toLowerCase()
+    await Visitor.create({ip, geoReq})
+    if(indexBarGifs){
+      indexBarGifs = shuffle(indexBarGifs, country)
+    }
+  }catch(e){
+    console.log(e)
   }
-  res.render("index", ({indexBarGifs}));
+
+  const visitorCount = await Visitor.count()
+
+  res.render("index", ({indexBarGifs, visitorCount}));
+
 });
 
 
