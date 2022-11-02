@@ -24,7 +24,6 @@ app.get("/", async (req, res) => {
   }
 
   const ip = requestIp.getClientIp(req)
-  const geoReq = await axios.get(`https://api.findip.net/${ip}/?token=${process.env.GEO_TOKEN}`)
 
   const visitor = await Visitor.findOne({where: {
     ip: ip
@@ -32,6 +31,7 @@ app.get("/", async (req, res) => {
 
   if(!visitor){
     try{
+      const geoReq = await axios.get(`https://api.findip.net/${ip}/?token=${process.env.GEO_TOKEN}`)
       const country = geoReq.data ? geoReq.data.country.names.en.toLowerCase() : 'loquendo_city'
       await Visitor.create({ip, country})
       console.log('New visitor from ' + country)
