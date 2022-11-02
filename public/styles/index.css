@@ -70,7 +70,7 @@ header{
     animation: fadeIn linear 1s;
     animation-delay: 5s;
     animation-fill-mode: forwards;
-    text-decoration: none;
+    text-decoration: none
 }
 
 .top-sprite > p:visited{
@@ -87,6 +87,7 @@ header{
     margin-top: 20px;
     margin-left: 9px;
     margin-right: 9px;
+    text-decoration: none
 }
 
 .right-top-sprites > .top-sprite, .left-top-sprites > .top-sprite{
