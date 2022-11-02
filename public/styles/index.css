@@ -3,9 +3,46 @@
     src: url(/public/fonts/MagicDecimal.ttf);
   }
 
-.top-sprites{
+header{
     background: url(/public/images/backgrounds/msheader.png) top center;
     height: 130px;
+}
+
+.visitors{
+    display: flex;
+    position: absolute;
+    object-fit: contain;
+    margin-left: 20px;
+}
+
+.visitors > *{
+    display: inline-block;
+}
+
+
+
+#kohakuvis{
+    width: 93px;
+    height: 97px;
+}
+
+#blackboard{
+    margin-top: 40px;
+    background: url(/public/images/backgrounds/blackboardmc.png);
+    width: 100px;
+    height: 50px;
+    font-size: 11px;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.blackboard-text{
+    display: flex;
+    flex-direction: column;
+    margin-top: 7px;
+}
+
+.top-sprites{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,13 +169,6 @@ body{
     text-align: center;
 }
 
-nav{
-    margin-left: 3%;
-    background-color: black;
-    border: 1px solid darkblue;
-    padding: 30px;
-    height: 100%;
-}
 
 main{
     background: url(/public/images/containerbgs/Sin\ título-2.png) repeat;
