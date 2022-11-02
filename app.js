@@ -19,19 +19,28 @@ setInterval(async () => await cloudReq(app), 300000)
 
 app.get("/", async (req, res) => {
   let {indexBarGifs} = app.locals
+  if(indexBarGifs){
+    indexBarGifs = shuffle(indexBarGifs)
+  }
 
   const ip = requestIp.getClientIp(req)
+  const geoReq = await axios.get(`https://api.findip.net/${ip}/?token=${process.env.GEO_TOKEN}`)
 
-  try{
-    const geoReq = await axios.get(`https://api.findip.net/${ip}/?token=${process.env.GEO_TOKEN}`)
-    const country = geoReq.data.country.names.en.toLowerCase()
-    await Visitor.create({ip, country})
-    if(indexBarGifs){
-      indexBarGifs = shuffle(indexBarGifs)
+  const visitor = await Visitor.findOne({where: {
+    ip: ip
+  }})
+
+  if(!visitor){
+    try{
+      const country = geoReq.data ? geoReq.data.country.names.en.toLowerCase() : 'loquendo_city'
+      await Visitor.create({ip, country})
+      console.log('New visitor from ' + country)
+    }catch(e){
+      console.log(e.message)
     }
-  }catch(e){
-    console.log(e.message)
   }
+
+
 
   const visitorCount = await Visitor.count()
 
