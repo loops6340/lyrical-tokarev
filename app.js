@@ -69,7 +69,7 @@ app.get('/avatar', (_req, res) => {
 
   let bgs = []
 
-  fs.readdir('./public/images/backgrounds/avatar', (err, files) =>{
+  fs.readdir('./public/images/avatar', (err, files) =>{
     if(err){
       console.log(err)
       files = ['59.jpeg']
