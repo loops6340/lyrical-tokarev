@@ -65,6 +65,20 @@ app.get('/door', (_req, res) => {
   })
 })
 
+app.get('/avatar', (_req, res) => {
+
+  let bgs = []
+
+  fs.readdir('./public/images/backgrounds/avatar', (err, files) =>{
+    if(err){
+      console.log(err)
+      files = ['59.jpeg']
+    }
+    bgs = files
+    res.status(200).send({bgs})
+  })
+})
+
 
 
 app.listen(port, () => {
