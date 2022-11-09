@@ -40,8 +40,10 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Visitor } = sequelize.models;
+const { Visitor, Guestbook_comment } = sequelize.models;
 
+Guestbook_comment.belongsTo(Visitor, {foreignKey: { allowNull: false }})
+Visitor.hasMany(Guestbook_comment, {foreignKey: { allowNull: false }})
 
 
 module.exports = {

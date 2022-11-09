@@ -7,11 +7,13 @@ const requestIp = require('request-ip');
 const fs = require('fs')
 const cloudReq = require('./utils/cloudinary/cloudReq');
 const shuffle = require("./utils/shuffle");
-const {conn, Visitor} = require('./db/db');
+const {conn, Visitor, Guestbook_comment} = require('./db/db');
 const axios = require('axios')
 const cors = require('cors');
 
-conn.sync()
+conn.sync({force: process.env.FORCE === 'true' ? true : false})
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 
 app.set("view engine", "ejs");
 app.use("/public", express.static(path.join(__dirname, "public")));
@@ -21,6 +23,8 @@ app.use(cors({
 
 cloudReq(app)
 setInterval(async () => await cloudReq(app), 300000)
+
+
 
 app.get("/", async (req, res) => {
   let {indexBarGifs} = app.locals
@@ -50,6 +54,52 @@ app.get("/", async (req, res) => {
   res.render("index", ({indexBarGifs, visitorCount}));
 
 });
+
+app.get('/guestbook', async (_req, res) => {
+
+  const comments = await Guestbook_comment.findAll({include: Visitor})
+  return res.render('guestbook', {comments})
+})
+
+app.post('/guestbook', async (req, res) => {
+  let {name, website, email, message, pic} = req.body
+  try{
+  if(!message) return res.send('MESSAGE CANT BE EMPTY!!!!!!!!')
+  if(!name) name = 'anon'
+  const ip = requestIp.getClientIp(req)
+  const visitor = await Visitor.findOne({where: {
+    ip: ip
+  }})
+  if(!visitor) return res.redirect('https://lyricaltokarev.neocities.org')
+  try{
+  const webCheckReq = await axios.get(website)
+  if(!webCheckReq.headers['content-type'].split(';')[0] === 'text/html') website = null
+  }catch(e){
+    website = null
+    console.log(e)
+  }
+
+  if(!pic){
+    let pics = fs.readdirSync('./public/images/avatar')
+    pic = pics[Math.floor(Math.random()*pics.length)]
+  }
+
+  await Guestbook_comment.create({
+    name,
+    website, 
+    email,
+    message,
+    pic, 
+    visitorId: visitor.dataValues.id})
+
+    return res.redirect('/guestbook')
+
+  }catch(e){
+    console.log(e)
+    return res.send(e.message)
+  }
+  })
+
 
 app.get('/door', (_req, res) => {
 

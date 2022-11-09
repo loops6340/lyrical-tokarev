@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRIMOIRE</title>
+    <link rel="stylesheet" href="/public/styles/guestbook.css">
+</head>
+<body>
+    <h1>GUESTBOOK</h1>
+
+    <form method="POST" action="/guestbook">
+        <div class="form_input"><input name="name" type="text" placeholder="Name..."><label for="name">blank if anon</label></div>
+        <div class="form_input"><input name="website" type="text" placeholder="Website..."><label for="website">optional</label></div>
+        <div class="form_input"><input name="email" type="email" placeholder="Email..."><label for="website">optional too</label></div>
+        <div class="form_input"><input name="member" placeholder="Which member of your family would you turn into a minion?"><label for="member">this one is required</label></div>
+        <textarea name="message" placeholder="UR opinion on this web site!!"></textarea>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <div class="comment_container">
+    <% comments.forEach(c => { %>
+        <div class="comment">
+            <img src="/public/images/avatar/<%=c.pic%>">
+            <p><%=c.message%></p>
+        </div>
+   <% }) %>
+    </div>
+
+</body>
+</html>
