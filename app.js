@@ -25,6 +25,14 @@ cloudReq(app)
 setInterval(async () => await cloudReq(app), 300000)
 
 
+const validateEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
+
 
 app.get("/", async (req, res) => {
   let {indexBarGifs} = app.locals
@@ -62,10 +70,12 @@ app.get('/guestbook', async (_req, res) => {
 })
 
 app.post('/guestbook', async (req, res) => {
-  let {name, website, email, message, pic} = req.body
+  let {name, website, email, message, member, pic} = req.body
   try{
-  if(!message) return res.send('MESSAGE CANT BE EMPTY!!!!!!!!')
+  if(!member || member === " ") return res.send('YOU HAVE TO TURN AT LEAST ONE MEMBER OF YOUR FAMILY INTO A MINION (DESPICABLE ME)')
+  if(!message || message.length === " ") return res.send('MESSAGE CANT BE EMPTY!!!!!!!!')
   if(!name) name = 'anon'
+  if(!validateEmail(email)) email = null
   const ip = requestIp.getClientIp(req)
   const visitor = await Visitor.findOne({where: {
     ip: ip
@@ -89,6 +99,7 @@ app.post('/guestbook', async (req, res) => {
     website, 
     email,
     message,
+    member,
     pic, 
     visitorId: visitor.dataValues.id})
 

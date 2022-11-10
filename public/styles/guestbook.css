@@ -1,3 +1,146 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url(/public/images/backgrounds/alicestars.png);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    padding: 20px;
+    position: fixed;
+    background-color: black;
+    color: white;
+    left: 1%;
+    top: 2%;
+    width: 17.5%;
+}
+
+#alices{
+    cursor: pointer;
+}
+
+#alicens{
+    position: fixed;
+    left: 1%;
+    top: 2%;
+    background-color: black;
+    display: none;
+    cursor: pointer;
+}
+
+form > div > label{
+    font-size: 10px;
+}
+
 form > *{
     display: block;
+}
+
+header{
+    background: url(/public/images/backgrounds/aliceheader.png) top center no-repeat;
+    height: 200px;
+}
+
+.top-sprites{
+    margin-left: 1.5%;
+}
+
+footer{
+    position: fixed;
+    bottom: -1%;
+    right: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.comment_container{
+    margin-top: 30px;
+    text-align: center;
+    padding: 20px;
+    background-image: url(/public/images/backgrounds/alicebg.png);
+    border: 14px solid black;
+}
+
+@media (max-width:1475px){
+    form{
+        display: none;
+    }
+    #alicens{
+        display: block;
+    }
+}
+@media (max-width:1065px){
+    .comment_container{
+        border: 7px;
+        padding: 3px;
+        margin-left: 0%;
+    }
+    .comment{
+        padding: 5px;
+    }
+}
+
+marquee{
+    color: white;
+}
+
+.comment{
+    background-image: url(/public/images/containerbgs/gbbg.png);
+    z-index: 1;
+    margin: 20px;
+    border: 5px solid black;
+    padding: 20px;
+    max-width: 800px;
+    overflow-wrap: break-word;
+}
+
+.comment_info{
+    padding: 20px;
+    background-image: url(/public/images/containerbgs/gbcont.png);
+    color: white;
+    min-height: 125px;
+}
+
+.namepfp{
+    margin: 20px;
+    margin-top: 15px;
+    float: right;
+    color: white;
+}
+
+.namepfp > *{
+    margin: 5px;
+}
+
+
+.comment:nth-child(odd) > .namepfp{
+    float: left;
+}
+
+.namepfp > img {
+    width: 50px;
+    height: 50px;
+    border: 3px dashed white;
+}
+
+.message{
+    background-color: black;
+    color: white;
+    text-align: start;
+    overflow-wrap: break-word;
+    padding: 10px;
+}
+
+.chaos{
+    margin-top: 20px;
+}
+
+#ad{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border: 1px solid black;
 }

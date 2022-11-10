@@ -6,27 +6,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GRIMOIRE</title>
     <link rel="stylesheet" href="/public/styles/guestbook.css">
+    <link rel="icon" type="image/x-icon" href="/public/images/favicons/gb.png">
 </head>
 <body>
-    <h1>GUESTBOOK</h1>
+    <header>
+        <%- include("components/nav") %>
+    </header>
 
-    <form method="POST" action="/guestbook">
-        <div class="form_input"><input name="name" type="text" placeholder="Name..."><label for="name">blank if anon</label></div>
-        <div class="form_input"><input name="website" type="text" placeholder="Website..."><label for="website">optional</label></div>
-        <div class="form_input"><input name="email" type="email" placeholder="Email..."><label for="website">optional too</label></div>
-        <div class="form_input"><input name="member" placeholder="Which member of your family would you turn into a minion?"><label for="member">this one is required</label></div>
-        <textarea name="message" placeholder="UR opinion on this web site!!"></textarea>
+    <img id="alicens" src="/public/images/portraits/alicems.png">
+
+    <form id="form" method="POST" action="/guestbook">
+        <div class="form_input"><p>Name</p><input name="name" type="text" placeholder="Reuenthal"><br><label for="name">blank if anon</label></div>
+        <div class="form_input"><p>Website</p><input name="website" type="text" placeholder="https://lyricaltokarev.fun/"><br><label for="website">optional</label></div>
+        <div class="form_input"><p>Email</p><input name="email" type="email" placeholder="lyrical@tokarev.fun"><br><label for="website">optional too</label></div>
+        <div class="form_input"><p>Which family member would you turn into a minion?</p><input name="member" placeholder="my newborn nephew"><br><label for="member">that one is required</label></div>
+        <div class="form_input"><p>PLEASE TELL ME HOW TO DEFEAT THEM</p><textarea name="message" placeholder="KILL THEM (WITH FIRE AND Death)"></textarea></div>
         <input type="submit" value="Enviar">
+        <div class="chaos">
+            <img id="alices" src="/public/images/portraits/alicems.png"><p>The owner of this website is constantly fighting otherwordly creatures.<br>
+            Please help him by completing his grimoire!
+            </p>
+        </div>
     </form>
 
     <div class="comment_container">
-    <% comments.forEach(c => { %>
+    <% if(comments.length === 0){ %>
+        <marquee>
+            <h2>My Grimoire Is Empty. This Is The End Of All Hope.</h2>
+            <img src="/public/images/portraits/alicedefeat.png">
+        </marquee>
+   <% }else{ %>
+    <% comments.forEach((c, i) => { %>
         <div class="comment">
-            <img src="/public/images/avatar/<%=c.pic%>">
-            <p><%=c.message%></p>
+                    <div class="namepfp">
+                        <img src="/public/images/avatar/<%=c.pic%>">
+                        <p><%=c.name%></p>
+                        <p><%=c.createdAt.toLocaleString()%></p>
+                    </div>
+              <div class="comment_info">
+                    <%if(c.name){ %>
+                        <span>My name is <%=c.name%> and I would turn <%=c.member%> into a minion!</span>
+                <% }else{ %>
+                        <span>I'm a really mysterious person and I would turn <%=c.member%> into a minion!</span>
+                <% } %>
+               <%if(c.website){ %>
+                <p><a href="<%=c.website%>"><%=c.website%></a></p>
+              <% } %>
+               <%if(c.email){ %>
+                <p><a href="mailto:<%=c.email%>"><%=c.email%></a></p>
+               <% } %>
+            </div>
+            <p class="message"><%=c.message%></p>
         </div>
    <% }) %>
+   <% } %>
+
     </div>
 
+    <img id="ad" src="/public/images/ads/banner_moviles1.gif">
+
+    <footer>
+        <img src="/public/images/romantic.png">
+    </footer>
+
+    <script>
+        const aliceon = document.getElementById('alices')
+        const aliceoff = document.getElementById('alicens')
+        const form = document.getElementById('form')
+
+        aliceon.addEventListener('click', () => {
+            form.style.display = 'none'
+            aliceoff.style.display = 'block'
+        })
+
+        aliceoff.addEventListener('click', () => {
+            form.style.display = 'block'
+            aliceoff.style.display = 'none'
+        })
+
+    </script>
 </body>
 </html>

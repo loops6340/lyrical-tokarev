@@ -1,0 +1,128 @@
+header{
+    width: 100%;
+}
+
+@font-face {
+    font-family: ms;
+    src: url(/public/fonts/MagicDecimal.ttf);
+  }
+
+.top-sprites{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: ms;
+    text-decoration: none;
+}
+
+.top-sprite > p{
+    opacity: 0;
+    color: white;
+    animation: fadeIn linear 1s;
+    animation-delay: 5s;
+    animation-fill-mode: forwards;
+    text-decoration: none
+}
+
+.top-sprite > p:visited{
+    opacity: 0;
+    color: white;
+    text-decoration: none;
+}
+
+.top-sprite{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 9px;
+    margin-right: 9px;
+    text-decoration: none
+}
+
+.right-top-sprites > .top-sprite, .left-top-sprites > .top-sprite{
+    animation: float 4s steps(24) infinite;
+    animation-delay: 6s;
+}
+
+@keyframes fadeIn {
+    100% { opacity: 1; }
+  }
+
+.right-top-sprites{
+    animation: enterright 3.5s linear;
+}
+
+.middle-top-sprites{
+    animation: entermid 5s linear;
+}
+
+.middle-top-sprites > .top-sprite{
+    margin-bottom: 15px;
+    animation: floatmid 4.3s steps(24) infinite;
+    animation-delay: 5.5s;
+}
+
+.left-top-sprites{
+    animation: enterleft 3.5s linear
+}
+
+
+
+
+
+@keyframes enterleft {
+	0% {
+		transform: translate(-100px, -100px);
+	}
+    75% {
+        transform: translate(-5px, -20px);
+    }
+	100% {
+		transform: translate(0px, 0px);
+	}
+}
+
+@keyframes entermid {
+	0% {
+		transform: translatey(-100px);
+	}
+    75% {
+        transform: translatey(13px);
+    }
+	100% {
+		transform: translatey(0px);
+	}
+}
+
+
+@keyframes enterright {
+	0% {
+		transform: translate(100px, -100px);
+	}
+    75% {
+        transform: translate(5px, -20px);
+    }
+	100% {
+		transform: translatey(0px, 0px);
+	}
+}
+
+@keyframes float {
+	0%, 100% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-15px);
+	}
+}
+
+@keyframes floatmid {
+	0%, 100% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+}

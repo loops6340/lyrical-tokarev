@@ -17,7 +17,7 @@ const { DataTypes } = require("sequelize");
         type: DataTypes.STRING,
     },
     message: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(5000),
     },
     pic: {
         type: DataTypes.STRING,
