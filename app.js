@@ -140,8 +140,20 @@ app.get('/avatar', (_req, res) => {
   })
 })
 
+const RssService = require('./services/rss/rss.services')
+const rssService = new RssService()
+
+app.get('/blog/rss', async (req, res) => {
+  console.log(req.locals)
+  const rss = await rssService.createRss(req)
+  console.log(rss)
+  res.send(rss)
+})
+
 
 
 app.listen(port, () => {
   console.log(`リリカルとカレブ！きるぜむおおる！！！！ ${port}`);
 });
+
+module.exports = app
