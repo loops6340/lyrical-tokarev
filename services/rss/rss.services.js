@@ -45,7 +45,7 @@ module.exports = class RssService{
     feed.item(        {
         title:  'El pollon cebollon',
         description: 'SUSANA XD',
-        url: 'https://lyricaltokarev.fun/blog/articles/artId',
+        url: 'https://lyricaltokarev.fun/blog/articles/siege',
         author: 'Gor',
         date: (new Date).toUTCString(),
         lat: '-30.845200317505412',
