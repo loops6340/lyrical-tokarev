@@ -16,12 +16,14 @@ module.exports = class RssService{
     }
 
     async createRss(){
-        let image_url = 'https://lyricaltokarev.fun/public/images/Sin%20t%C3%ADtulo-8.png'
+        let image_url = 'https://lyricaltokarev.fun/public/images/avatar/Screenshot_12.jpg'
 
         let feed =  new RSS({
             ...this,
             image_url
         })
+
+        console.log(feed)
 
         const thumbnail = 'https://img1.ak.crunchyroll.com/i/spire1/6c3852c71e6a68c43a47409331b627f81642825856_large.jpg'
         const imageDataRes = await axios.get(thumbnail)
