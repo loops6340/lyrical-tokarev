@@ -144,9 +144,8 @@ const RssService = require('./services/rss/rss.services')
 const rssService = new RssService()
 
 app.get('/blog/rss', async (req, res) => {
-  console.log(req.locals)
-  const rss = await rssService.createRss(req)
-  console.log(rss)
+  const rss = await rssService.createRss()
+  res.set('Content-Type', 'text/xml');
   res.send(rss)
 })
 
