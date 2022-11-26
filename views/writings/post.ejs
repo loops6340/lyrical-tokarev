@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSTEAR</title>
+    <link href="/public/styles/quill/quillSnow.css" rel="stylesheet">
+</head>
+<body>
+    <input id="title" name="title" placeholder="Title"><br>
+
+    <div id="editor" name="description">
+        <p>Hello World!</p>
+        <p>Some initial <strong>bold</strong> text</p>
+        <p><br></p>
+    </div>
+
+    <input id="category" name="category" placeholder="Add category..."><button id="category_add">Add</button><br>
+    <input id="thumbnail_url" placeholder="Thumbnail url">OR<input id="thumbnail" type="file"><br>
+
+    <button id="post">Post</button><span id="cats"></span><br>
+    <input id="apikey" value="<%=process.env.CLOUDINARY_KEY%>">
+    
+    <h2 id="error" style="color:red ;"></h2>
+
+      <script src="/public/scripts/quill/quill.js"></script>
+      <script src="/public/scripts/quill/quillScript.js"></script>
+</body>
+</html>

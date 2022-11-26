@@ -1,5 +1,6 @@
 const RSS = require('rss');
-const axios = require('axios')
+const ArticlesServices = require('../articles/articles.services');
+const articlesServices = new ArticlesServices()
 
 module.exports = class RssService{
     constructor(){
@@ -23,39 +24,29 @@ module.exports = class RssService{
             image_url
         })
 
-        const thumbnail = 'https://img1.ak.crunchyroll.com/i/spire1/6c3852c71e6a68c43a47409331b627f81642825856_large.jpg'
-        const imageDataRes = await axios.get(thumbnail)
+        const articles = await articlesServices.getAllArticles()
 
-        feed.item({
-            title:  'item title',
-            description: 'ESTE ES EL FIN DE TODA LA ESPERANZA DE PERDER AL hijo LA FE <img src="https://img1.ak.crunchyroll.com/i/spire1/6c3852c71e6a68c43a47409331b627f81642825856_large.jpg">',
-            url: 'https://lyricaltokarev.fun/blog/articles/artId',
-            author: 'Gor',
-            date: (new Date).toUTCString(),
-            lat: '-30.845200317505412',
-            long: '-64.4769029017211',
-            enclosure: {
-                url: thumbnail,
-                size: imageDataRes.headers['content-length'],
-                type: imageDataRes.headers['content-type']
+        articles.forEach(a => {
+            const {title, description, createdAt, url, thumbnail_url, thumbnail_size, thumbnail_type, categories} = a
+            feed.item({
+                title,
+                description,
+                url: `https://lyricaltokarev.fun/blog/articles/${url}`,
+                author: `Gor`,
+                date: createdAt.toUTCString(),
+                lat: '-30.845200317505412',
+                long: '-64.4769029017211',
+                categories,
+                enclosure: {
+                    url: thumbnail_url,
+                    size: thumbnail_size,
+                    type: thumbnail_type
+                }
             }
-        }
-    );
+        );
+        })
 
-    feed.item(        {
-        title:  'El pollon cebollon',
-        description: 'SUSANA XD',
-        url: 'https://lyricaltokarev.fun/blog/articles/siege',
-        author: 'Gor',
-        date: (new Date).toUTCString(),
-        lat: '-30.845200317505412',
-        long: '-64.4769029017211',
-        enclosure: {
-            url: thumbnail,
-            size: imageDataRes.headers['content-length'],
-            type: imageDataRes.headers['content-type']
-        }
-    })
+
 
         return feed.xml({indent: true})
     }

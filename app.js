@@ -11,7 +11,7 @@ const router = require('./router/index.router')
 
 conn.sync({force: process.env.FORCE === 'true' ? true : false})
 app.use(express.urlencoded({extended: true}))
-app.use(express.json())
+app.use(express.json({limit : '50mb'}))
 
 app.set("view engine", "ejs");
 app.use("/public", express.static(path.join(__dirname, "public")));
