@@ -6,21 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLOG</title>
     <link rel="icon" type="image/x-icon" href="">
+    <link rel="stylesheet" href="/public/styles/blog.css">
 </head>
 <body>
+    <a id="rss" href="/blog/rss" target="_blank"><img src="/public/images/icons/rss.png"></a>
     <header>
         <%- include("components/nav") %>
     </header>
 
     <main class="content">
-        <div class="articlesContainer">
-    <% articles.forEach(a => { %>
-        <h1><%=a.title%></h1>
-        <%-a.description%>
-   <% }) %>
+        <h2>This section is the embodiment of the Word.</h2 ><br>
+        <h1 style="color: yellow;">VIEWS UNDER CONSTRUCTION!!!!!!!!!!!</h1><br>
+        <h3>For this is the End of The World</h3><br>
+        <h3 style="color: green;">The length of the content inside of this collection of dynamically generated hypertext markup language documents may range from a single UTF-8 character or image to an actual writing.</h3><br>
+        <h3>World's End</h3>
+        <div class="paths">
+            <a href="/blog/writings">WORDS</a>
         </div>
-        <%- include('components/paginator', {...paginator})%>
-    </div>
+        <% if(articles.length > 2){ %>
+        <h2>Recent words</h2>
+        <div class="articlesContainer">
+    <% for(let i = 0; i < 3; i++){ %>
+       <% const {title, thumbnail_url, url} = articles[i] %>
+       <a style="background-color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, 0.8);" href="/blog/writings/<%=url%>" class="article">
+            <img src="<%=thumbnail_url%>">
+            <h3><%=title%></h3>
+       </a>
+   <% } %>
+   <%}%>
+        </div>
+    </main>
 
 </body>
 </html>

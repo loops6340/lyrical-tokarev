@@ -1,0 +1,57 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header{
+    background-image: url('/public/images/backgrounds/shinkiheader.png'), url('/public/images/backgrounds/shinkiheader2.png');
+    height: 217px;
+    background-repeat: no-repeat, repeat-x;
+    background-position: 50%, 53%;
+}
+
+#rss{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+main{
+    padding: 25px;
+    width: 60%;
+    margin-top: 20px;
+    background-image: url('/public/images/containerbgs/burnedmakai.png');
+    background-color: #780000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-repeat: repeat-x;
+    background-position: bottom;
+}   
+
+.article{
+    display: inline-block;
+    text-align: center;
+    border-color: rgb(211, 211, 211);
+    border-width: 1px;
+    border-style: outset;
+    padding: 5px;
+}
+
+.article > *{
+    display: inline-block;
+}
+
+.article > h3{
+    font-size: 14px;
+}
+
+.article > img{
+    width: 100px;
+    height: 50px;
+    object-fit: contain;
+}

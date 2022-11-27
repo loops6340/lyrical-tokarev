@@ -13,12 +13,27 @@
         <% if(i === page){ %>
             <span><%= i %></span>
         <% }else{ %>
-            <a href="/blog/writings/<%=i%>"><%=i%></a>
+            <a href="/blog/writings/page/<%=i%>"><%=i%></a>
         <% } %> 
 
     <%} %>
     <% if(page !== lastPage && page < lastPage-5){ %>
-        <a href="/blog/writings/<%=lastPage%>">>></a>
+        <a href="/blog/writings/page/<%=lastPage%>">>></a>
     <% } %>
     </div>
+    <style>
+        .iterator > *{
+            font-size: 26px;
+            color: white;
+            margin-left: 20px;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+        .iterator > *:visited{
+            text-decoration: none;
+        }
+        .iterator > span{
+            color: blue;
+        }
+    </style>
 </center>

@@ -6,6 +6,7 @@
   const error = document.getElementById('error')
   const api_key = document.getElementById('apikey').value
   const cats = document.getElementById('cats')
+  const thumbnailFileInput = document.getElementById('thumbnail')
 
 
   var quill = new Quill('#editor', {
@@ -27,6 +28,30 @@
     }
   }
     });
+
+
+    thumbnailFileInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      const base64 = await convertBase64(file);
+      try{
+      const res = await (await fetch(`https://api.cloudinary.com/v1_1/dptqk9qvc/upload`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            file: base64,
+            folder: 'thumbnail',
+            api_key: api_key,
+            upload_preset: 'ml_default'
+          })
+        })).json()
+        thumbnailUrlInput.value = res.url
+      }catch(e){
+        error.innerHTML = e.message
+      }
+    })
 
 
   addCategory.addEventListener('click', () => {
@@ -86,8 +111,10 @@
 
   if(!res.success){
     console.log(res)
-    error.innerHTML = res.data
+    return error.innerHTML = res.data
   }
+
+  window.location.replace("/blog/writings/" + res.data.url);
 
   })
 
@@ -114,3 +141,19 @@
       tooltip.edit('image');
       tooltip.textbox.placeholder = 'Embed URL';
     }
+
+
+    const convertBase64 = (file) => {
+      return new Promise((resolve, reject) => {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+  
+          fileReader.onload = () => {
+              resolve(fileReader.result);
+          };
+  
+          fileReader.onerror = (error) => {
+              reject(error);
+          };
+      });
+  };

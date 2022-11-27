@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOG</title>
+    <link rel="icon" type="image/x-icon" href="">
+    <link rel="stylesheet" href="/public/styles/blog.css">
+</head>
+<body>
+    <a id="rss" href="/blog/rss" target="_blank"><img src="/public/images/icons/rss.png"></a>
+    <header>
+        <a href="/blog">Back</a>
+    </header>
+
+    <main class="content">
+        <h3>This is the end of the world.</h3><br>
+    <% if(articles.length === 0){ %>
+        <span>:c</span>
+   <% }else{ %>
+    <div class="articlesContainer">
+        <% for(let i = 0; i < articles.length; i++){ %>
+           <% const {title, thumbnail_url, url} = articles[i] %>
+           <a style="background-color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, 0.8);" href="/blog/writings/<%=url%>" class="article">
+                <img src="<%=thumbnail_url%>">
+                <h3><%=title%></h3>
+           </a>
+       <% } %>
+            </div>
+            <%- include('../components/paginator', {...paginator})%>
+  <% } %>
+
+    </main>
+
+</body>
+</html>

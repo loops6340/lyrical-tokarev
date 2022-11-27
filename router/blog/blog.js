@@ -3,11 +3,13 @@ const { isAdmin } = require('../../controllers/authController');
 const ArticlesServices = require('../../services/articles/articles.services');
 const router = Router();
 
+let lastPage = 0
+
 const articlesServices = new ArticlesServices()
 
 router.get('/', async (req, res) => {
     try{
-        const data = await getAndFilterArticles(0, req.query)
+        const data = await getAndFilterArticles(Math.floor(Math.random() * lastPage+1), req.query)
         return renderWithPaginator(data, res)
     }catch(e){
         console.error(e)
@@ -27,28 +29,39 @@ router.get('/post', isAdmin, async (req, res) => {
 router.get('/writings', async (req, res) => {
     try{
         const data = await getAndFilterArticles(0, req.query)
-        return renderWithPaginator(data, res)
+        return renderWithPaginator(data, res, 0, 'writings/writings')
     }catch(e){
         console.error(e)
         res.send(e.message)
     }
 });
 
-router.get('/writings/:page', async (req, res) => {
+router.get('/writings/:writing', async (req, res) => {
+    try{
+        const article = await articlesServices.getArticleByUrl(req.params.writing)
+        if(!article) return res.send('NO.')
+        return res.render('writings/writing', {article})
+    }catch(e){
+        console.error(e)
+        res.send(e.message)
+    }
+});
+
+router.get('/writings/page/:page', async (req, res) => {
     try{
     const page = parseInt(req.params.page)
     if(page === 0) return res.redirect('/blog/writings')
     if(!page) return res.redirect('https://kurokona.neocities.org/')
     const data = await getAndFilterArticles(page, req.query)
     if(data.lastPage < page) return res.redirect('https://kurokona.neocities.org/')
-    return renderWithPaginator(data, res, page)
+    return renderWithPaginator(data, res, page, 'writings/writings')
     }catch(e){
         console.error(e)
         res.send(e.message)
     }
 });
 
-router.post('/post', async (req, res) => {
+router.post('/post', isAdmin, async (req, res) => {
     try{
         const {body} = req
         for(const prop in body){
@@ -74,7 +87,9 @@ const getAndFilterArticles = async (page = 0, queries = []) => {
         filters.push(param)
     }
     const articlesAndCount = await articlesServices.getAllArticles(page, filters, true)
-    return {...articlesAndCount, lastPage: Math.floor(articlesAndCount.count/articlesServices.paginated)}
+    const _lastPage = Math.floor(articlesAndCount.count/articlesServices.paginated)
+    lastPage = _lastPage
+    return {...articlesAndCount, lastPage: _lastPage}
 }
 
 const renderWithPaginator = (data, res, page = 0, render = 'blog') => {

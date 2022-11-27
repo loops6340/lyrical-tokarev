@@ -50,7 +50,7 @@ module.exports = class ArticlesServices{
 
         let unmappedArticles = {}
 
-        const query = {include: {model: Category}, limit: this.paginated, offset: page*this.paginated}
+        const query = {include: {model: Category}, limit: this.paginated, offset: page*this.paginated, order: [['createdAt', 'DESC']]}
 
         if(categories.length){
             for(const name of categories){
@@ -71,6 +71,11 @@ module.exports = class ArticlesServices{
         if(returnCount) return {articles, count}
         return articles
     
+    }
+
+    async getArticleByUrl(url){
+        const article = await Article.findOne({where: {url}, include: {model: Category}})
+        return article
     }
 
 }
