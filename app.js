@@ -5,6 +5,7 @@ const port = process.env.PORT;
 const path = require("path");
 const cloudReq = require('./utils/cloudinary/cloudReq');
 const {conn} = require('./db/db');
+const cookieParser = require('cookie-parser')
 
 const cors = require('cors');
 const router = require('./router/index.router')
@@ -12,6 +13,7 @@ const router = require('./router/index.router')
 conn.sync({force: process.env.FORCE === 'true' ? true : false})
 app.use(express.urlencoded({extended: true}))
 app.use(express.json({limit : '50mb'}))
+app.use(cookieParser());
 
 app.set("view engine", "ejs");
 app.use("/public", express.static(path.join(__dirname, "public")));

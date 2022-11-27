@@ -1,0 +1,24 @@
+<center>
+    <div class="iterator">
+    <% if(page !== 0 && page > 6){ %>
+        <a href="/blog/writings"><<</a>
+    <% } %>
+    <% for(let i = page-5; i <= page+5; i++){ %>
+        <% if (i < 0){ %>
+            <% i = 0 %>
+    <% } %>
+        <% if(i > lastPage && i !== 0){ %>
+            <% break %>
+    <% } %>
+        <% if(i === page){ %>
+            <span><%= i %></span>
+        <% }else{ %>
+            <a href="/blog/writings/<%=i%>"><%=i%></a>
+        <% } %> 
+
+    <%} %>
+    <% if(page !== lastPage && page < lastPage-5){ %>
+        <a href="/blog/writings/<%=lastPage%>">>></a>
+    <% } %>
+    </div>
+</center>

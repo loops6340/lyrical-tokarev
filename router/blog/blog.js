@@ -1,4 +1,5 @@
 const {Router} = require('express');
+const { isAdmin } = require('../../controllers/authController');
 const ArticlesServices = require('../../services/articles/articles.services');
 const router = Router();
 
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/post', async (req, res) => {
+router.get('/post', isAdmin, async (req, res) => {
     try{
     return res.render('writings/post')
     }catch(e){
@@ -36,7 +37,8 @@ router.get('/writings', async (req, res) => {
 router.get('/writings/:page', async (req, res) => {
     try{
     const page = parseInt(req.params.page)
-    if(!page || page <= 0) return res.redirect('https://kurokona.neocities.org/')
+    if(page === 0) return res.redirect('/blog/writings')
+    if(!page) return res.redirect('https://kurokona.neocities.org/')
     const data = await getAndFilterArticles(page, req.query)
     if(data.lastPage < page) return res.redirect('https://kurokona.neocities.org/')
     return renderWithPaginator(data, res, page)

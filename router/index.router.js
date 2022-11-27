@@ -4,11 +4,13 @@ const router = Router();
 const index = require('./index/index')
 const guestbook = require('./guestbook/guestbook')
 const blog = require('./blog/blog.router')
+const login = require('./login/login')
 const fs = require('fs')
 
 router.use('/', index)
 router.use('/guestbook', guestbook)
 router.use('/blog', blog)
+router.use('/login', login)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

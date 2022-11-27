@@ -12,10 +12,15 @@
         <%- include("components/nav") %>
     </header>
 
+    <main class="content">
+        <div class="articlesContainer">
     <% articles.forEach(a => { %>
         <h1><%=a.title%></h1>
         <%-a.description%>
    <% }) %>
+        </div>
+        <%- include('components/paginator', {...paginator})%>
+    </div>
 
 </body>
 </html>
