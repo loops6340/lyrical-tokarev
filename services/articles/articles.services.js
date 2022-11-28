@@ -1,6 +1,7 @@
 const axios = require('axios')
 const {Article, Category} = require('../../db/db')
-
+const TwitterServices = require('../twitter/twitter.services')
+const twitterService = new TwitterServices()
 
 
 module.exports = class ArticlesServices{
@@ -10,7 +11,8 @@ module.exports = class ArticlesServices{
 
     async createArticle(data){
         try{
-            const imageDataRes = await axios.get(data.thumbnail_url)
+            const {title, description, thumbnail_url} = data
+            const imageDataRes = await axios.get(thumbnail_url)
             
             const thumbnail_size = imageDataRes.headers['content-length']
             const thumbnail_type = imageDataRes.headers['content-type']
@@ -22,6 +24,19 @@ module.exports = class ArticlesServices{
                 thumbnail_type,
                 url,
             })
+
+
+
+            if(data.tweet){
+                try{
+                const tweet_id = await (await twitterService.tweetArticle(`${title}: ${description}`, thumbnail_url)).data
+                Object.assign(data, {
+                    tweet_id
+                })
+                }catch(e){
+                    console.error(e)
+                }
+            }
 
 
 

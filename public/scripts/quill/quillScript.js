@@ -7,6 +7,7 @@
   const api_key = document.getElementById('apikey').value
   const cats = document.getElementById('cats')
   const thumbnailFileInput = document.getElementById('thumbnail')
+  const tweet = document.getElementById('tweet')
 
 
   var quill = new Quill('#editor', {
@@ -105,7 +106,8 @@
         title,
         description,
         thumbnail_url,
-        categories
+        categories,
+        tweet: tweet.checked
       })
   })).json()
 
@@ -114,7 +116,7 @@
     return error.innerHTML = res.data
   }
 
-  window.location.replace("/blog/writings/" + res.data.url);
+  error.innerHTML = 'HECHO'
 
   })
 

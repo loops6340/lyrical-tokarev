@@ -5,7 +5,8 @@ const { DataTypes } = require("sequelize");
   sequelize.define("article", {
     title: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     description: {
         type: DataTypes.TEXT('long'),
@@ -30,6 +31,11 @@ const { DataTypes } = require("sequelize");
     thumbnail_type: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    tweet_id: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: null
     }
  },
  {
