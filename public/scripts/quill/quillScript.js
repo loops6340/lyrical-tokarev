@@ -74,8 +74,9 @@
     
     for (let i = 0; i < images.length; i++) {
       const el = images[i];
-      if(el.src.split(':')[0] === 'data') continue
+      // if(el.src.split(':')[0] === 'data') continue
       const base64img = el.src
+      try{
       const res = await (await fetch(`https://api.cloudinary.com/v1_1/dptqk9qvc/upload`, {
           method: 'POST',
           headers: {
@@ -89,7 +90,12 @@
             upload_preset: 'ml_default'
           })
         })).json()
+        console.log(res)
         el.src = res.url
+      }catch(e){
+        console.error(e.message)
+          return error.innerHTML = e.message
+        }
     }
 
 
@@ -116,7 +122,7 @@
     return error.innerHTML = res.data
   }
 
-  error.innerHTML = 'HECHO'
+  error.innerHTML = `<a target="_blank" href="/blog/writings/${res.data.url}">HECHO</a>`
 
   })
 
