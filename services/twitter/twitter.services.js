@@ -15,7 +15,11 @@ class TwitterServices{
 
     async tweetArticle(data, thumbnail_url){
         try{
-        const images = getImgSrcFromHTML(data)
+        const srcs = getImgSrcFromHTML(data)
+        const images = srcs.filter(i => {return i.match(/\.[0-9a-z]+$/i)[0] !== '.gif'})
+        const gifs = srcs.filter(i => {return i.match(/\.[0-9a-z]+$/i)[0] === '.gif'})
+        console.log(images)
+        console.log(gifs)
         const tweet = convert(data, {selectors: [ { selector: 'img', format: 'skip' }, { selector: 'a', format: 'skip' } ]})
         const tweetSplitArr = (tweet.match(/.{1,280}/g));
 
@@ -45,8 +49,6 @@ class TwitterServices{
             }
 
             let imagesToSend = []
-            console.log(imagesToSend)
-            console.log(uploadedImages.length+1)
             for (let i = 1; i <= uploadedImages.length+1; i++) {
                 const imageTwitterId = uploadedImages[i-1];
                 imagesToSend.push(imageTwitterId)
@@ -61,6 +63,17 @@ class TwitterServices{
                     imagesToSend = []
                 }
             }
+
+            while(gifs.length > 0){
+                console.log(gifs)
+                const gif = gifs.shift()
+                const mediaIdString = await twitterUploadMedia(gif, this.twitterClient, {media_category: 'tweet_gif'})
+                console.log(mediaIdString)
+                const tweetReplyResData = await this.twitterClient.post('https://api.twitter.com/1.1/statuses/update.json', {status: "", in_reply_to_status_id: idToReply, media_ids: mediaIdString})
+                console.log(tweetReplyResData)
+                idToReply = tweetReplyResData.id_str
+            }
+
         }
 
         return{
@@ -94,10 +107,11 @@ async function getBase64(url) {
     return base64
   }
 
-async function twitterUploadMedia(url, client){
+async function twitterUploadMedia(url, client, options = {media_category: 'tweet_image'}){
+    const {media_category} = options
     try{
     const media_data = await getBase64(url)
-    const uploadedImageRes = await client.post('https://upload.twitter.com/1.1/media/upload.json?media_category=tweet_image', {media_data})
+    const uploadedImageRes = await client.post(`https://upload.twitter.com/1.1/media/upload.json?media_category=${media_category}`, {media_data})
     return uploadedImageRes.media_id_string
     }catch(e){
         console.error(e)
