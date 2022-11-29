@@ -1,0 +1,37 @@
+[
+    {
+        "word": "jew",
+        "replaceArr": ["chaos cultist", "Satan's servant", "Golem", "disciple of the moon"],
+        "s": [null, null, null, 8]
+        
+    },
+    {
+        "word": "nigger",
+        "replaceArr": ["hungry beast", "disgusting dark creature"]
+    },
+    {
+        "word": "faggot",
+        "replaceArr": ["thelemite", "follower of Therion", "worshipper of ancient babilonian chaos deities", "son of Thelema", "pleaser of the flesh", "fornicator of the flesh", "serial sinner"],
+        "s": [null, 8, 10, 4, 7, 10, null]
+    },
+    {
+        "word": "normie",
+        "replaceArr": ["throbbing pile of flesh", "highly somatic creature", "Common", "hylic"],
+        "s": [14, null, null, null]
+    },
+    {
+        "word": "gnostic",
+        "replaceArr": ["destroyer", "sinner", "adversary", "worshipper of viscous pagan deities beyond his comprehension"],
+        "s": [null, null, null, null, ["REPLACE", 8, 8, "ies"], ["REPLACE", 43, 45, "their"]]
+    },
+    {
+        "word": "fuck",
+        "replaceArr": ["woe"],
+        "s": [null]
+    },
+    {
+        "word": "tranny",
+        "replaceArr": ["adversary of the nature of man", "that who self-flagellates in order to please Nyarlathotep", "oversocialized being"],
+        "s": [["REPLACE", 8, 8, "ies"], ["REPLACE", 0, 4, "those"], null]
+    }
+]
