@@ -4,7 +4,9 @@ const {Visitor, Guestbook_comment} = require('../../db/db');
 const requestIp = require('request-ip');
 const fs = require('fs')
 const axios = require('axios');
-const validateEmail = require('../../utils/validateEmail')
+const validateEmail = require('../../utils/validateEmail');
+const FilterService = require('../../services/filter/filter.services');
+const filter = new FilterService()
 
 router.get('/', async (_req, res) => {
 
@@ -36,6 +38,8 @@ router.post('/', async (req, res) => {
     let pics = fs.readdirSync('./public/images/avatar')
     pic = pics[Math.floor(Math.random()*pics.length)]
   }
+
+  message = filter.filter(message)
 
   await Guestbook_comment.create({
     name,

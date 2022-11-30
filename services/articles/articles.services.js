@@ -2,6 +2,8 @@ const axios = require('axios')
 const {Article, Category} = require('../../db/db')
 const TwitterServices = require('../twitter/twitter.services')
 const twitterService = new TwitterServices()
+const FilterService = require('../../services/filter/filter.services');
+const filter = new FilterService()
 
 
 module.exports = class ArticlesServices{
@@ -11,7 +13,7 @@ module.exports = class ArticlesServices{
 
     async createArticle(data){
         try{
-            const {title, description, thumbnail_url} = data
+            let {title, description, thumbnail_url} = data
             const imageDataRes = await axios.get(thumbnail_url)
             
             const thumbnail_size = imageDataRes.headers['content-length']
@@ -25,6 +27,8 @@ module.exports = class ArticlesServices{
                 url,
             })
 
+            data.title = filter.filter(title)
+            data.description = filter.filter(description)
 
 
             if(data.tweet){

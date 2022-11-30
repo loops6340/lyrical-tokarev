@@ -14,13 +14,13 @@ class FilterService{
         const newStr = data.split(' ').map(i => {
             i = i.toLowerCase()
             let punctuation = ""
+            let tag = ""
             let split = i.split("")
             let lastChar = split[split.length-1]
-            if(lastChar === ',' ||lastChar === '.' ||lastChar === ';' || lastChar === ':'){
+            if(lastChar === ',' ||lastChar === '.' ||lastChar === ';' || lastChar === ':' || lastChar === '<'){
                 punctuation = split.pop()
             }
             i = split.join("")
-            console.log(i)
             this.filterArr.forEach(j => {
                 if(i === j.word + 's' || i === j.word.slice(0, -1)+'ies'){
                     let wordToReplace = j.replaceArr[Math.floor((Math.random()*j.replaceArr.length))]
@@ -51,11 +51,6 @@ class FilterService{
     }
     
 }
-
-const test = new FilterService()
-
-console.log(test.filter("I HATE TRANNIES, NIGGERS, JEWS AND FAGGOTS ALSO FUCK GNOSTICS FUCK THEM FUCK YOU IF YOU ARE GNOSTIC A NIGGER A TRANNY OR A FAGGOT."))
-
 
 
 module.exports = FilterService
