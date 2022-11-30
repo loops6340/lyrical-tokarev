@@ -7,12 +7,13 @@
     },
     {
         "word": "nigger",
-        "replaceArr": ["hungry beast", "disgusting dark creature"]
+        "replaceArr": ["hungry beast", "disgusting dark creature"],
+        "s": [null, null]
     },
     {
         "word": "faggot",
         "replaceArr": ["thelemite", "follower of Therion", "worshipper of ancient babilonian chaos deities", "son of Thelema", "pleaser of the flesh", "fornicator of the flesh", "serial sinner"],
-        "s": [null, 8, 10, 4, 7, 10, null]
+        "s": [null, 8, 10, 3, 7, 10, null]
     },
     {
         "word": "normie",
@@ -22,7 +23,15 @@
     {
         "word": "gnostic",
         "replaceArr": ["destroyer", "sinner", "adversary", "worshipper of viscous pagan deities beyond his comprehension"],
-        "s": [null, null, null, null, ["REPLACE", 8, 8, "ies"], ["REPLACE", 43, 45, "their"]]
+        "s": [null, null, null, null, {
+            "first": 8,
+            "last": 9,
+            "form": "ies"
+        }, {
+            "first": 43,
+            "last": 46,
+            "form": "their"
+        }]
     },
     {
         "word": "fuck",
@@ -31,7 +40,15 @@
     },
     {
         "word": "tranny",
-        "replaceArr": ["adversary of the nature of man", "that who self-flagellates in order to please Nyarlathotep", "oversocialized being"],
-        "s": [["REPLACE", 8, 8, "ies"], ["REPLACE", 0, 4, "those"], null]
+        "replaceArr": ["adversary of the nature of man", "him who decided to self-flagellate in order to please Nyarlathotep", "oversocialized being"],
+        "s": [{
+            "first": 8,
+            "last": 9,
+            "form": "ies"
+        }, {
+            "first": 0,
+            "last": 3,
+            "form": "those"
+        }, null]
     }
 ]
