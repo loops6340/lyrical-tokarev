@@ -31,27 +31,37 @@ main{
     align-items: center;
     background-repeat: repeat-x;
     background-position: bottom;
-}   
-
-.article{
-    display: inline-block;
-    text-align: center;
-    border-color: rgb(211, 211, 211);
-    border-width: 1px;
+    border-color: gray;
+    border-width: 7.5px;
     border-style: outset;
-    padding: 5px;
 }
 
-.article > *{
-    display: inline-block;
+.articlesContainer{
+    display: flex;
+}
+
+.article{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: rgb(211, 211, 211);
+    border-width: 2.5px;
+    border-style: outset;
+    padding: 5px;
+    width: 168px;
+    height: 81px;
+    margin: 4px;
+    text-decoration: none;
 }
 
 .article > h3{
     font-size: 14px;
+    margin-left: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .article > img{
-    width: 100px;
-    height: 50px;
-    object-fit: contain;
+    margin-right: 2px;
+    height: 35px;
 }

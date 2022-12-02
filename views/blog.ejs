@@ -25,7 +25,7 @@
         <% if(articles.length > 2){ %>
         <h2>Recent words</h2>
         <div class="articlesContainer">
-    <% for(let i = 0; i < 3; i++){ %>
+    <% for(let i = 0; i < 6; i++){ %>
        <% const {title, thumbnail_url, url} = articles[i] %>
        <a style="background-color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, 0.8);" href="/blog/writings/<%=url%>" class="article">
             <img src="<%=thumbnail_url%>">

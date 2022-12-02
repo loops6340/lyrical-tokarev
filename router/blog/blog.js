@@ -9,7 +9,8 @@ const articlesServices = new ArticlesServices()
 
 router.get('/', async (req, res) => {
     try{
-        const data = await getAndFilterArticles(Math.floor(Math.random() * lastPage+1), req.query)
+        const data = await getAndFilterArticles(Math.floor(Math.random() * lastPage), req.query)
+        console.log(data)
         return renderWithPaginator(data, res)
     }catch(e){
         console.error(e)
