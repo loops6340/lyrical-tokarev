@@ -1,4 +1,6 @@
-<% const {description} = article %>
+<% const {description, title, createdAt, categories} = article %>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,17 +9,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLOG</title>
     <link rel="icon" type="image/x-icon" href="">
-    <link rel="stylesheet" href="/public/styles/blog.css">
+    <link rel="stylesheet" href="/public/styles/writings/writing.css">
 </head>
 <body>
-    <a id="rss" href="/blog/rss" target="_blank"><img src="/public/images/icons/rss.png"></a>
     <header>
-        <a href="/blog/writings">Back</a>
     </header>
 
     <main class="content">
+        <h1><%=title%></h1>
+        <h3><%=createdAt.toUTCString()%></h3>
+        <div>
+        <%categories.forEach((c, i) => { %>
+            <% let catString = c.dataValues.name %>
+            <%if(i !== categories.length-1){ %>
+                <% catString += ',' %>
+           <% }%>
+            <span><%=catString%></span>
+       <% }) %>
+        </div>
+        <hr>
         <%-description%>
     </main>
 
+    <footer>
+        <a id="back" href="/blog/writings"><<<<<<<< WRITINGS</a><br><br>
+        <a id="rss" href="/blog/rss" target="_blank">
+        <img src="/public/images/icons/rss.png"></a>
+    </footer>
 </body>
 </html>

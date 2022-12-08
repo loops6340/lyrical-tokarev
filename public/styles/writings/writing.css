@@ -1,0 +1,37 @@
+@font-face{
+    font-family: junicode;
+    src: url('/public/fonts/Junicode.ttf');
+}
+
+body{
+    background-color: black;
+    padding: 20px;
+}
+
+body > *{
+    font-family: junicode;
+    color: white;
+}
+
+main > img, main > * > img{
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+
+#back{
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    font-family: junicode;
+    margin-top: 25px;
+    right: 50%;
+}
+
+#back:visited{
+    color: white;
+}
+
+footer{
+    text-align: center;
+}
