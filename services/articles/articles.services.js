@@ -97,4 +97,12 @@ module.exports = class ArticlesServices{
         return article
     }
 
+    async getAllCategories(){
+        const categoriesQ = await Category.findAll()
+        const categories = categoriesQ.map(i => {
+            return i.dataValues.name
+        })
+        return categories
+    }
+
 }

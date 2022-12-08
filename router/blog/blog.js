@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
     try{
         const data = await getAndFilterArticles(Math.floor(Math.random() * lastPage), req.query)
         console.log(data)
-        return renderWithPaginator(data, res)
+        return await renderWithPaginatorAndCategories(data, res)
     }catch(e){
         console.error(e)
         res.send(e.message)
@@ -30,7 +30,7 @@ router.get('/post', isAdmin, async (req, res) => {
 router.get('/writings', async (req, res) => {
     try{
         const data = await getAndFilterArticles(0, req.query)
-        return renderWithPaginator(data, res, 0, 'writings/writings')
+        return await renderWithPaginatorAndCategories(data, res, 0, 'writings/writings')
     }catch(e){
         console.error(e)
         res.send(e.message)
@@ -55,7 +55,7 @@ router.get('/writings/page/:page', async (req, res) => {
     if(!page) return res.redirect('https://kurokona.neocities.org/')
     const data = await getAndFilterArticles(page, req.query)
     if(data.lastPage < page) return res.redirect('https://kurokona.neocities.org/')
-    return renderWithPaginator(data, res, page, 'writings/writings')
+    return await renderWithPaginatorAndCategories(data, res, page, 'writings/writings')
     }catch(e){
         console.error(e)
         res.send(e.message)
@@ -93,9 +93,11 @@ const getAndFilterArticles = async (page = 0, queries = []) => {
     return {...articlesAndCount, lastPage: _lastPage}
 }
 
-const renderWithPaginator = (data, res, page = 0, render = 'blog') => {
+const renderWithPaginatorAndCategories = async (data, res, page = 0, render = 'blog') => {
     const {articles, count, lastPage} = data
-    res.render(render, {articles, paginator: {page, lastPage}, count})
+    const categories = await articlesServices.getAllCategories()
+    console.log(categories)
+    res.render(render, {articles, paginator: {page, lastPage}, count, categories})
 }
 
 module.exports = router;
