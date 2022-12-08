@@ -100,8 +100,10 @@
             </div>
   <aside class="column right">
     <img class="fish" src="/public/images/transparent-gifs/Biar9XpaT.gif">
-    <div class="al">
-        <h3>IT IS ALL WRITTEN</h3>
+    <div class="al categories">
+        <%categories.forEach(c => { %>
+            <a class="category"><%=c%></a>
+       <% }) %>
     </div>
     <img class="fish" src="/public/images/transparent-gifs/Biar9XpaT.gif">
 </aside>

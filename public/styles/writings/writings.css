@@ -76,7 +76,6 @@ body{
     padding: 20px;
     /* border-top: 5px solid #50351A;
     border-bottom: 5px solid #50351A; */
-    outline-offset: 20px;
 }
 
 .column > img{
@@ -245,6 +244,21 @@ user-select: none; /* Standard */
     height: 100px;
     width: 100%;
     object-fit: fill;
+}
+
+.categories{
+    padding: 20px;
+}
+
+.category{
+    color: white;
+    font-size: 26px;
+    font-family: junicode;
+    font-weight: bold;
+}
+
+.category:visited{
+    color: white;
 }
 
 
