@@ -10,7 +10,6 @@ const articlesServices = new ArticlesServices()
 router.get('/', async (req, res) => {
     try{
         const data = await getAndFilterArticles(Math.floor(Math.random() * lastPage), req.query)
-        console.log(data)
         return await renderWithPaginatorAndCategories(data, res)
     }catch(e){
         console.error(e)
@@ -66,7 +65,6 @@ router.post('/post', isAdmin, async (req, res) => {
     try{
         const {body} = req
         for(const prop in body){
-            console.log(prop)
             if(body[prop] === '') return res.status(400).json({
                 success: false,
                 data: 'No ' + prop + ' received.'
@@ -96,7 +94,6 @@ const getAndFilterArticles = async (page = 0, queries = []) => {
 const renderWithPaginatorAndCategories = async (data, res, page = 0, render = 'blog') => {
     const {articles, count, lastPage} = data
     const categories = await articlesServices.getAllCategories()
-    console.log(categories)
     res.render(render, {articles, paginator: {page, lastPage}, count, categories})
 }
 
