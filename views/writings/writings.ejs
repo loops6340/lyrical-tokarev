@@ -10,10 +10,6 @@
 </head>
 <body>
 
-    <% if(articles.length === 0){ %>
-        <h3>Nothing found.</h3><br>
-   <% }else{ %>
-
     <main class="container">
     <div class="title"><marquee class="title_marquee"><img src="/public/images/transparent-gifs/1-1658999291244.gif.gif"><h1>LIBRARY</h1><img src="/public/images/transparent-gifs/libros-2.gif"></marquee></div>
     <div class="content">
@@ -86,14 +82,21 @@
                     .אָמן</marquee>
             <img id="mc" src="/public/images/transparent-gifs/circles/mc1.gif">
         </div>
+        <% if(articles.length === 0){ %>
+            <div class="nothingBack">
+                <h3 id="nothing">Nothing found.</h3><br>
+                <a id="nothingBack" onclick="history.back();" href="javascript: void(0)">Go back</a>
+            </div>
+       <% }else{ %>
         <% for(let i = 0; i < articles.length; i++){ %>
-           <% const {title, thumbnail_url, url} = articles[i] %>
-           <a class="article"  color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>)
-            background-color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, 0.8);" href="/blog/writings/<%=url%>" class="article">
-                <img src="<%=thumbnail_url%>">
-                <h3><%=title%></h3>
-           </a>
-       <% } %>
+            <% const {title, thumbnail_url, url} = articles[i] %>
+            <a class="article"  color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>)
+             background-color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, 0.8);" href="/blog/writings/<%=url%>" class="article">
+                 <img src="<%=thumbnail_url%>">
+                 <h3><%=title%></h3>
+            </a>
+        <% } %>
+     <% } %>
             </div>
   <aside class="column right">
     <img class="fish" src="/public/images/transparent-gifs/Biar9XpaT.gif">
@@ -111,9 +114,9 @@
     <div class="title paginator"><%- include('../components/paginator', {...paginator})%></div>
 </main>
 <a id="back" href="/blog"><<<<<<<<<<<< GO BACK</a>
-<% } %>
-
     <img id="patchy" src="/public/images/transparent-gifs/PatoelietoeIdle.gif">
 
+
+    <script src="/public/scripts/writings/writings.js"></script>
 </body>
 </html>

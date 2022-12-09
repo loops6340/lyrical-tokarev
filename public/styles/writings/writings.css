@@ -256,6 +256,7 @@ user-select: none; /* Standard */
     font-size: 26px;
     font-family: junicode;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .category:visited{
@@ -306,3 +307,17 @@ user-select: none; /* Standard */
         padding-bottom: 20px;
     }
   }
+
+.nothingBack{
+    z-index: 30;
+    color: white;
+}
+
+#nothing{
+    font-size: 36px;
+    z-index: 30;
+}
+
+#nothingBack{
+    font-size: 20px;
+}
