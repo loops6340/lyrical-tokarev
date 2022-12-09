@@ -76,6 +76,7 @@ body{
     padding: 20px;
     /* border-top: 5px solid #50351A;
     border-bottom: 5px solid #50351A; */
+    flex-grow: 1;
 }
 
 .column > img{
