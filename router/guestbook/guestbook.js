@@ -16,7 +16,6 @@ router.get('/', async (_req, res) => {
     obj.dataValues.pic = pics.find(p => p.filename === obj.dataValues.pic).url
     return obj.dataValues
     })
-    console.log(comments)
     return res.render('guestbook', {comments})
 })
 
