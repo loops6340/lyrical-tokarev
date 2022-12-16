@@ -1,16 +1,22 @@
 const {Router} = require('express');
 const router = Router();
-
 const requestIp = require('request-ip');
 const shuffle = require("../../utils/shuffle");
 const {Visitor} = require('../../db/db');
-const axios = require('axios')
+const axios = require('axios');
+const ResourcesService = require('../../services/resources/resources.services');
+const resourcesService = new ResourcesService()
 
 router.get("/", async (req, res) => {
-    let {indexBarGifs} = req.app.locals
-    if(indexBarGifs){
-      indexBarGifs = shuffle(indexBarGifs)
-    }
+
+    const indexBarGifsNoShuffle = await (await resourcesService.getAllGifs()).data
+    const indexBarGifs = shuffle(indexBarGifsNoShuffle).filter(g => g.width <= 70 && g.height <= 70)
+
+    const shillButtons = shuffle( await (await resourcesService.getAllButtonsAndBannersAndOrderByTag(['button', 'shill'])).data)
+
+    const buttons = shuffle( await (await resourcesService.getAllButtonsAndBannersAndOrderByTag(['button'], ['shill', 'ring'])).data)
+
+    const ads = shuffle( await (await resourcesService.getAllButtonsAndBannersAndOrderByTag(['ad'])).data)
   
     const ip = requestIp.getClientIp(req)
   
@@ -31,7 +37,7 @@ router.get("/", async (req, res) => {
     
       const visitorCount = await Visitor.count()
     
-      res.render("index", ({indexBarGifs, visitorCount}));
+      res.render("index", ({indexBarGifs, visitorCount, shillButtons, buttons, ads}));
     
 });
 

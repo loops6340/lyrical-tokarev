@@ -20,7 +20,7 @@ class ResourcesService {
       const filesArr = await this.filesReq("buttons-banners-etc");
       const filteredByTag = filesArr.filter((f) => {
         return (
-          f.tags.some((t) => tags.includes(t)) &&
+          checker(f.tags, tags) &&
           !f.tags.some((t) => filter.includes(t))
         );
       });
@@ -40,7 +40,6 @@ class ResourcesService {
   async getAllGifs() {
     try {
       const filesArr = await this.filesReq("gifs-epicos");
-      console.log(filesArr)
       return {
         success: true,
         data: filesArr,
@@ -57,3 +56,5 @@ class ResourcesService {
 
 
 module.exports = ResourcesService
+
+let checker = (arr, target) => target.every(v => arr.includes(v));

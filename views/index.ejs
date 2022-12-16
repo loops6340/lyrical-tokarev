@@ -46,14 +46,9 @@
 
                     <div class="button-container">
                         <div class="marquee" id="mycrawler">
-                            <%- include("components/buttons/marquee", {src: 'lukesmith.gif', alt: 'FIRST INSPIRATION', link: 'https://lukesmith.xyz/'}) %>
-                            <%- include("components/buttons/marquee", {src: 'wiby.gif', alt: 'BEST SEARCH ENGINE', link: 'https://www.wiby.me'}) %>
-                            <%- include("components/buttons/marquee", {src: 'aagp-mini-bouton.gif', alt: 'MADE ME START THE GIF GALLERY', link: 'http://animegifs.free.fr/index2.html'}) %>
-                            <%- include("components/buttons/marquee", {src: 'banner1-rgbteahouse.jpg', alt: 'comfy', link: 'https://rgbteahouse.neocities.org/'}) %>
-                            <%- include("components/buttons/marquee", {src: 'yobunbanner1.gif', alt: 'BEST SITE ON THE ENTIRE INTERNET', link: 'https://zanarkand.neocities.org/'}) %>
-                            <%- include("components/buttons/marquee", {src: 'cherrysite.png', alt: '', link: 'https://cherrychan.neocities.org'}) %>
-                            <%- include("components/buttons/marquee", {src: 'icongallery.gif', alt: '', link: 'https://anlucas.neocities.org/88x31Buttons.html'}) %>
-                            <%- include("components/buttons/marquee", {src: 'billsworld.gif', alt: '', link: 'https://billsworld.neocities.org/'}) %>    
+                            <% shillButtons.forEach(b => { %>
+                                <%- include('components/buttons/button', {b: b}) %>
+                          <%  }) %>
                         </div>
 
                     </div>
@@ -65,34 +60,17 @@
                     <div class="buttons">
 
                         <div class="buttons-column">
-                            <%- include("components/buttons/button", {src: 'banner5.gif', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'bestviewed.gif', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'bestviewedcomp.gif', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'christnow.gif', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'fireskull.gif', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'fubutton2.gif', link:'https://youtu.be/A5SZIW18_QI'}) %>
-                            <%- include("components/buttons/button", {src: 'fubutton5.gif', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'fubutton7.gif', link:'https://www3.nns.ne.jp/~tk-mto/kikiyamaHP.html'}) %>
-                            <%- include("components/buttons/button", {src: 'fubutton25.gif', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'fubutton29.png', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'fubutton30.png', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'fubutton36.png', link:null}) %>
+                            <%for(let i = 0; i < Math.floor(buttons.length/2); i++){ %>
+                                <% const b = buttons[i] %>
+                                <%- include("components/buttons/button", {b}) %>
+                           <% }%>
                         </div>
 
                         <div class="buttons-column">
-                            <%- include("components/buttons/button", {src: 'fubutton40.gif', link:null}) %>   
-                            <%- include("components/buttons/button", {src: 'fubutton38.gif', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'gospelnow.gif', link:'https://la-santa-biblia-en-3d.uptodown.com/windows/descargar'}) %>
-                            <%- include("components/buttons/button", {src: 'ico (2).webp', link:'https://neocities.org/'}) %>
-                            <%- include("components/buttons/button", {src: 'learn_html.gif', link:'http://seismo.berkeley.edu/~rallen/resources/html/HTMLPrimerAll.html'}) %>
-                            <%- include("components/buttons/button", {src: 'now20.gif', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'piracy.gif', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'prod_625_17265.gif', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'reisen.png', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'winrar.jpg', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'fubutton37.png', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'nwk.jpeg', link:null}) %>
-                            <%- include("components/buttons/button", {src: 'ico (1).webp', link:null}) %>
+                            <%for(let i = Math.floor(buttons.length/2); i < buttons.length; i++){ %>
+                                <% const b = buttons[i] %>
+                                <%- include("components/buttons/button", {b}) %>
+                           <% }%>
                         </div>
 
                     </div>
@@ -124,9 +102,10 @@
 
                 <div class="bottom">
                     <div class="ads">
-                        <img src="/public/images/ads/250x250.gif">
-                        <img src="/public/images/ads/300x250(3).gif">
-                        <img src="/public/images/ads/300x250(4).gif">
+                        <% for(let i = 0; i < 4; i++){ %>
+                            <% const a = ads[i] %>
+                            <%- include('components/buttons/button', {b: a}) %>
+                       <% } %>
                     </div>
                 </div>
 

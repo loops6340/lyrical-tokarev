@@ -1,7 +1,12 @@
-<% if(link){ %>
-    <a href="<%=link%>" target="_blank">
+<% if(b.context && b.context.link){ %>
+    <a href="<%=b.context.link%>" target="_blank">
 <% } %>
-<img src="/public/images/buttons/<%=src%>">
-<% if(link){ %>
+<% if (b.context && b.context.title) { %>
+ <img src="<%=b.url%>" title="<%=b.context.title%>">
+<% } else { %>
+    <img src="<%=b.url%>">
+<% } %>
+ 
+<% if(b.context && b.context.link){ %>
     </a>
 <% } %>

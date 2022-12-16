@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT;
 const path = require("path");
-const cloudReq = require('./utils/cloudinary/cloudReq');
 const {conn} = require('./db/db');
 const cookieParser = require('cookie-parser')
 
@@ -21,9 +20,6 @@ app.use(cors({
   origin: 'https://lyricaltokarev.neocities.org'
 }));
 app.use('/', router)
-
-cloudReq(app)
-setInterval(async () => await cloudReq(app), 300000)
 
 app.listen(port, () => {
   console.log(`リリカルとカレブ！きるぜむおおる！！！！ ${port}`);
