@@ -52,6 +52,23 @@ class ResourcesService {
       };
     }
   }
+
+  async getAvatars(){
+    try {
+      const filesArr = await this.filesReq("avatar");
+      return {
+        success: true,
+        data: filesArr,
+      };
+    } catch (e) {
+      console.error(e);
+      return {
+        success: false,
+        data: e.message,
+      };
+    }
+  }
+
 }
 
 

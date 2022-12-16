@@ -2,15 +2,21 @@ const {Router} = require('express');
 const router = Router();
 const {Visitor, Guestbook_comment} = require('../../db/db');
 const requestIp = require('request-ip');
-const fs = require('fs')
 const axios = require('axios');
 const validateEmail = require('../../utils/validateEmail');
 const FilterService = require('../../services/filter/filter.services');
+const ResourcesService = require('../../services/resources/resources.services');
 const filter = new FilterService()
+const resourceService = new ResourcesService()
 
 router.get('/', async (_req, res) => {
-
-    const comments = await Guestbook_comment.findAll({include: Visitor})
+    let pics = await (await resourceService.getAvatars()).data
+    const comments = await (await Guestbook_comment.findAll({include: Visitor})).map(c => {
+    const obj = {...c}
+    obj.dataValues.pic = pics.find(p => p.filename === obj.dataValues.pic).url
+    return obj.dataValues
+    })
+    console.log(comments)
     return res.render('guestbook', {comments})
 })
 
@@ -35,8 +41,8 @@ router.post('/', async (req, res) => {
   }
 
   if(!pic){
-    let pics = fs.readdirSync('./public/images/avatar')
-    pic = pics[Math.floor(Math.random()*pics.length)]
+    let pics = await (await resourceService.getAvatars()).data
+    pic = pics[Math.floor(Math.random()*pics.length)].filename
   }
 
   message = filter.filter(message)
