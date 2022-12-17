@@ -11,12 +11,14 @@ const resourceService = new ResourcesService()
 
 router.get('/', async (_req, res) => {
     let pics = await (await resourceService.getAvatars()).data
+    const ads = await (await resourceService.getAllButtonsAndBannersAndOrderByTag(['ad'])).data
+    const randomAd = ads.length > 0 ? ads[Math.floor(Math.random()*ads.length)] : null
     const comments = await (await Guestbook_comment.findAll({include: Visitor})).map(c => {
     const obj = {...c}
-    obj.dataValues.pic = pics.find(p => p.filename === obj.dataValues.pic).url
+    obj.dataValues.pic = pics.length > 0 ? pics.find(p => p.filename === obj.dataValues.pic).url : '/public/images/portraits/alicedefeat.png'
     return obj.dataValues
     })
-    return res.render('guestbook', {comments})
+    return res.render('guestbook', {comments, randomAd})
 })
 
 router.post('/', async (req, res) => {
@@ -41,7 +43,7 @@ router.post('/', async (req, res) => {
 
   if(!pic){
     let pics = await (await resourceService.getAvatars()).data
-    pic = pics[Math.floor(Math.random()*pics.length)].filename
+    pic = pics[Math.floor(Math.random()*pics.length)].filename || null
   }
 
   message = filter.filter(message)

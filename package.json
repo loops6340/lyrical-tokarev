@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "start http://localhost:3003 && nodemon app.js"
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",

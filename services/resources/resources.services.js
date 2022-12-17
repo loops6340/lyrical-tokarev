@@ -32,7 +32,7 @@ class ResourcesService {
       console.error(e);
       return {
         success: false,
-        data: e.message,
+        data: [],
       };
     }
   }
@@ -48,7 +48,7 @@ class ResourcesService {
       console.error(e);
       return {
         success: false,
-        data: e.message,
+        data: [],
       };
     }
   }
@@ -64,7 +64,7 @@ class ResourcesService {
       console.error(e);
       return {
         success: false,
-        data: e.message,
+        data: [],
       };
     }
   }

@@ -63,7 +63,11 @@
 
     </div>
 
-    <img id="ad" src="/public/images/ads/banner_moviles1.gif">
+    <% if(randomAd){ %>
+        <div id="ad">
+        <%-include('components/buttons/button.ejs', {b: randomAd}) %>
+        </div>
+   <% } %>
 
     <footer>
         <img src="/public/images/romantic.png">

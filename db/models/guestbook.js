@@ -21,6 +21,8 @@ const { DataTypes } = require("sequelize");
     },
     pic: {
         type: DataTypes.STRING,
+        allowNull: true,
+        default: null
     }
  });
 };
