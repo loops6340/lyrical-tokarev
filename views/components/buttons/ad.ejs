@@ -1,0 +1,62 @@
+
+
+
+<div id="ad-container">
+    <div id="ad">
+        <%-include('./button.ejs', {b: b}) %>
+    </div>
+    <button id="close-button">X</button>
+  </div>
+
+
+
+<style>
+#ad-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+#ad {
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease-in-out;
+}
+
+#close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  cursor: pointer;
+}
+</style>
+
+
+<script>
+const adContainer = document.getElementById('ad-container');
+const ad = document.getElementById('ad');
+
+// On page load, animate the ad by sliding it up from the bottom of the screen
+window.onload = function() {
+  ad.style.transform = 'translateY(0)';
+}
+
+// Get the close button and add an event listener to close the ad when clicked
+const closeButton = document.getElementById('close-button');
+closeButton.addEventListener('click', function() {
+  // Animate the ad by sliding it down and then hide it
+  ad.style.transform = 'translateY(100%)';
+  setTimeout(function() {
+    adContainer.style.display = 'none';
+  }, 500);
+});
+</script>
