@@ -13,7 +13,7 @@ router.get('/', async (_req, res) => {
     let pics = await (await resourceService.getAvatars()).data
     const ads = await (await resourceService.getAllButtonsAndBannersAndOrderByTag(['ad'])).data
     const randomAd = ads.length > 0 ? ads[Math.floor(Math.random()*ads.length)] : null
-    const comments = await (await Guestbook_comment.findAll({include: Visitor})).map(c => {
+    const comments = await (await Guestbook_comment.findAll({include: Visitor, order: [['id', 'ASC']]})).map(c => {
     const obj = {...c}
     obj.dataValues.pic = pics.length > 0 ? pics.find(p => p.filename === obj.dataValues.pic).url : '/public/images/portraits/alicedefeat.png'
     return obj.dataValues
