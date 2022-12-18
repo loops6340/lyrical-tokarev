@@ -77,6 +77,11 @@ main{
     border-image-slice: 33%;
 }
 
+.button{
+    width: 88px;
+    height: 31px;
+}
+
 .blinkies{
     margin-top: 7%;
     margin-left: 5%;

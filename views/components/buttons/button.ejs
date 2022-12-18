@@ -2,9 +2,9 @@
     <a href="<%=b.context.link%>" target="_blank">
 <% } %>
 <% if (b.context && b.context.title) { %>
- <img src="<%=b.url%>" title="<%=b.context.title%>">
+ <img class="<%=b.tags.includes('button') && 'button'%>" src="<%=b.url%>" title="<%=b.context.title%>">
 <% } else { %>
-    <img src="<%=b.url%>">
+    <img class="<%=b.tags.includes('button') && 'button'%>" src="<%=b.url%>">
 <% } %>
  
 <% if(b.context && b.context.link){ %>
