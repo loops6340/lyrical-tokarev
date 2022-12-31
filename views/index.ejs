@@ -87,6 +87,20 @@
                         </p>
                         <img src="/public/images/Screenshot_57.png">
                         <img src="/public/images/Screenshot_1.png">
+                        <h2>RING</h2>
+                        <div>
+                            <%for(let i = 0; i < mutuals.length; i++){ %>
+                                <% const b = mutuals[i] %>
+                                <% console.log(b) %>
+                                <%- include("components/buttons/button", {b}) %>
+                           <% }%>
+                        </div>
+                        <div>
+                            <h4>Become</h4><br>
+                            <a href="https://lyricaltokarev.neocities.org" target="_blank">
+                                <img src="/public/images/buttons/lyricaltokarevbutton.gif">
+                            </a>
+                        </div>
                     </main>
 
                     <div class="blinkies">

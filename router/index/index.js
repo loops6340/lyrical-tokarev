@@ -16,6 +16,8 @@ router.get("/", async (req, res) => {
 
     const buttons = shuffle( await (await resourcesService.getAllButtonsAndBannersAndOrderByTag(['button'], ['shill', 'ring'])).data)
 
+    const mutuals = shuffle( await (await resourcesService.getAllButtonsAndBannersAndOrderByTag(['button', 'ring'])).data)
+
     const ads = shuffle( await (await resourcesService.getAllButtonsAndBannersAndOrderByTag(['ad'])).data)
   
     const ip = requestIp.getClientIp(req)
@@ -37,7 +39,7 @@ router.get("/", async (req, res) => {
     
       const visitorCount = await Visitor.count()
     
-      res.render("index", ({indexBarGifs, visitorCount, shillButtons, buttons, ads}));
+      res.render("index", ({indexBarGifs, visitorCount, shillButtons, buttons, ads, mutuals}));
     
 });
 
