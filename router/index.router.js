@@ -5,12 +5,14 @@ const index = require('./index/index')
 const guestbook = require('./guestbook/guestbook')
 const blog = require('./blog/blog.router')
 const login = require('./login/login')
+const chat = require('./chat/chat')
 const fs = require('fs')
 
 router.use('/', index)
-router.use('/guestbook', guestbook)
-router.use('/blog', blog)
-router.use('/login', login)
+.use('/guestbook', guestbook)
+.use('/blog', blog)
+.use('/login', login)
+.use('/chat', chat)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
+const app = require("express")();
+const httpServer = require("http").createServer(app);
+const io = require("socket.io")(httpServer);
 const port = process.env.PORT;
 const path = require("path");
 const {conn} = require('./db/db');
@@ -21,8 +23,30 @@ app.use(cors({
 }));
 app.use('/', router)
 
-app.listen(port, () => {
+httpServer.listen(port, () => {
   console.log(`リリカルとカレブ！きるぜむおおる！！！！ ${port}`);
 });
+
+const messages = []
+
+io.on('connection', (socket) => {
+
+  const clientIp = socket.request.connection.remoteAddress;
+
+  messages.forEach(m => {
+    socket.emit('SEND_MESSAGE_FROM_SERVER', m)
+  })
+
+  socket.on('SEND_MESSAGE_TO_SERVER', (message) => {
+    console.log(clientIp, message.text, message.author)
+    messages.push(message)
+    io.emit('SEND_MESSAGE_FROM_SERVER', message)
+    if(messages.length > 50){
+      messages.shift()
+    }
+  })
+
+
+})
 
 module.exports = app
