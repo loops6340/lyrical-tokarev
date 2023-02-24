@@ -80,7 +80,7 @@
                     <% } %>
 
                     <main>
-                        <p class="main p"><h1>LYRICALTOKAREV.FUN IS ON THE LINE.</h1>
+                        <p class="main p"><h1 id="online">LYRICALTOKAREV.FUN IS ON THE LINE.</h1>
                             <p>THIS SITE WAS MAINLY MADE 2 DISS THEM LURKING OUTER ONES. HERE'S A LIST OF THOSE THAT ARE NOT WELCOME HERE</p>
                             <ul>
                                 <li>CHAOS NIGGAS</li>
@@ -157,5 +157,11 @@
         <img src="/public/images/portraits/yume.png">
     </div>
     <script src="/public/scripts/marquee.js"></script>
+    <script>
+        const online = document.getElementById("online");
+        online.addEventListener("mouseover", () => {
+            window.open("/public/images/lyricaltokarev.fun.jpg", "_blank")
+        })
+    </script>
 </body>
 </html>
