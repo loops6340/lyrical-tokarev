@@ -31,7 +31,7 @@ module.exports = class RssService{
             feed.item({
                 title,
                 description,
-                url: `https://lyricaltokarev.fun/blog/articles/${url}`,
+                url: `https://lyricaltokarev.fun/blog/writings/${url}`,
                 author: `Gor`,
                 date: createdAt.toUTCString(),
                 lat: '-30.845200317505412',
