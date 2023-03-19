@@ -27,8 +27,8 @@ module.exports = class ArticlesServices{
                 url,
             })
 
-            data.title = filter.filter(title)
-            data.description = filter.filter(description)
+            // data.title = filter.filter(title)
+            // data.description = filter.filter(description)
 
 
             if(data.tweet){
