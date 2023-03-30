@@ -15,13 +15,12 @@ class ResourcesService {
     return filesArr;
   }
 
-  async getAllButtonsAndBannersAndOrderByTag(tags = imageTypes, filter = []) {
+  async getAllButtonsAndBannersAndOrderByTag(tags = imageTypes, filter = [], orTags = []) {
     try {
       const filesArr = await this.filesReq("buttons-banners-etc");
       const filteredByTag = filesArr.filter((f) => {
         return (
-          checker(f.tags, tags) &&
-          !f.tags.some((t) => filter.includes(t))
+          checker(f.tags, tags) && !f.tags.some((t) => filter.includes(t)) || f.tags.some((t) => orTags.includes(t))
         );
       });
       return {

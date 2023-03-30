@@ -11,7 +11,7 @@ const resourceService = new ResourcesService()
 
 router.get('/', async (_req, res) => {
     let pics = await (await resourceService.getAvatars()).data
-    const ads = await (await resourceService.getAllButtonsAndBannersAndOrderByTag(['ad'])).data
+    const ads = await (await resourceService.getAllButtonsAndBannersAndOrderByTag(["ad"], [], ["banner"])).data
     const randomAd = ads.length > 0 ? ads[Math.floor(Math.random()*ads.length)] : null
     const comments = await (await Guestbook_comment.findAll({include: Visitor, order: [['id', 'DESC']]})).map(c => {
     const obj = {...c}
