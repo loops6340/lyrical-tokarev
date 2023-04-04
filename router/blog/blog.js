@@ -64,12 +64,12 @@ router.get('/writings/page/:page', async (req, res) => {
 router.post('/post', isAdmin, async (req, res) => {
     try{
         const {body} = req
-        for(const prop in body){
-            if(body[prop] === '') return res.status(400).json({
-                success: false,
-                data: 'No ' + prop + ' received.'
-            })
-        }
+        // for(const prop in body){
+        //     if(body[prop] === '') return res.status(400).json({
+        //         success: false,
+        //         data: 'No ' + prop + ' received.'
+        //     })
+        // }
         const data = await articlesServices.createArticle(body)
         if(!res.success) return res.status(500).json(data)
         return res.status(200).json(data)

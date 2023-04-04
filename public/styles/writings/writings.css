@@ -247,6 +247,11 @@ user-select: none; /* Standard */
     object-fit: fill;
 }
 
+.description{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .categories{
     padding: 20px;
 }

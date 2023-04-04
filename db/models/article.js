@@ -18,21 +18,26 @@ const { DataTypes } = require("sequelize");
     },
     url: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     thumbnail_url: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     thumbnail_size: {
         type: DataTypes.BIGINT,
-        allowNull: false
+        allowNull: true
     },
     thumbnail_type: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     tweet_id: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        defaultValue: null
+    },
+    pleroma_id: {
         type: DataTypes.STRING,
         allowNull: true,
         defaultValue: null

@@ -89,11 +89,15 @@
             </div>
        <% }else{ %>
         <% for(let i = 0; i < articles.length; i++){ %>
-            <% const {title, thumbnail_url, url} = articles[i] %>
+            <% const {title, thumbnail_url, url, description} = articles[i] %>
             <a class="article"  color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>)
              background-color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, 0.8);" href="/blog/writings/<%=url%>" class="article">
-                 <img src="<%=thumbnail_url%>">
-                 <h3><%=title%></h3>
+                <%if(thumbnail_url){ %>
+                    <img src="<%=thumbnail_url%>">
+                    <h3><%=title%></h3>
+                 <% }else{ %>
+                    <p class="description" color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>)><%=description %></p>
+                <% } %>
             </a>
         <% } %>
      <% } %>

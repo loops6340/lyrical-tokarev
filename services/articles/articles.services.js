@@ -3,7 +3,9 @@ const {Article, Category} = require('../../db/db')
 const TwitterServices = require('../twitter/twitter.services')
 const twitterService = new TwitterServices()
 const FilterService = require('../../services/filter/filter.services');
-const filter = new FilterService()
+const PleromaService = require('../pleroma/pleroma.services');
+const { convert } = require('html-to-text');
+const pleromaSerivce = new PleromaService()
 
 
 module.exports = class ArticlesServices{
@@ -14,16 +16,26 @@ module.exports = class ArticlesServices{
     async createArticle(data){
         try{
             let {title, description, thumbnail_url} = data
-            const imageDataRes = await axios.get(thumbnail_url)
-            
-            const thumbnail_size = imageDataRes.headers['content-length']
-            const thumbnail_type = imageDataRes.headers['content-type']
 
-            const url = data.title.toLowerCase().split(' ').join('-')
+            if(thumbnail_url){
+                const imageDataRes = await axios.get(thumbnail_url)
+                Object.assign(data, {
+                    thumbnail_size: imageDataRes.headers['content-length'],
+                    thumbnail_type: imageDataRes.headers['content-type']
+                })
+            }
+
+            let url
+            
+
+            if(title.length > 0){
+                url = data.title.toLowerCase().split(' ').join('-') 
+            }else{
+                data.title = convert(description, {selectors: [ { selector: 'img', format: 'skip' }, { selector: 'a', format: 'skip' } ]}).slice(0, 10)
+                url = data.title.slice(0, 10).split(' ').join('-')
+            }
 
             Object.assign(data, {
-                thumbnail_size,
-                thumbnail_type,
                 url,
             })
 
@@ -33,10 +45,23 @@ module.exports = class ArticlesServices{
 
             if(data.tweet){
                 try{
-                const tweet_id = await (await twitterService.tweetArticle(`${title}: ${description}`, thumbnail_url)).data
-                Object.assign(data, {
-                    tweet_id
-                })
+                    const tweet_id = await (await twitterService.tweetArticle(`${title.length > 0 ? title : ""}${description}`, thumbnail_url)).data
+                    Object.assign(data, {
+                        tweet_id
+                    })
+                    console.log('Mirrored on twitter')
+                }catch(e){
+                    console.error(e)
+                }
+            }
+
+            if(data.pleroma){
+                try{
+                    const pleroma_id = await (await pleromaSerivce.pleromaArticleMirror(`${description}`, "private")).data
+                    Object.assign(data, {
+                        pleroma_id
+                    })
+                    console.log('Mirrored on pleroma')
                 }catch(e){
                     console.error(e)
                 }

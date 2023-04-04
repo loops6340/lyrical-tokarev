@@ -19,8 +19,8 @@ class TwitterServices{
         const srcs = getImgSrcFromHTML(data)
         const images = srcs.filter(i => {return i.match(/\.[0-9a-z]+$/i)[0] !== '.gif'})
         const gifs = srcs.filter(i => {return i.match(/\.[0-9a-z]+$/i)[0] === '.gif'})
-        const tweet = convert(data, {selectors: [ { selector: 'img', format: 'skip' }, { selector: 'a', format: 'skip' } ]})
-        const tweetSplitArr = (tweet.match(/.{1,280}/g));
+        const tweet = convert(data, {selectors: [ { selector: 'img', format: 'skip' }, { selector: 'a', format: 'skip' } ], wordwrap: 3999})
+        const tweetSplitArr = (tweet.match(/.{1,3999}/g));
 
         const media_id_string = await twitterUploadMedia(thumbnail_url, this.twitterClient)
 

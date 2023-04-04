@@ -8,6 +8,7 @@
   const cats = document.getElementById('cats')
   const thumbnailFileInput = document.getElementById('thumbnail')
   const tweet = document.getElementById('tweet')
+  const pleroma = document.getElementById('pleroma')
 
 
   var quill = new Quill('#editor', {
@@ -67,8 +68,6 @@
 
     const title = titleEl.value
     const thumbnail_url = thumbnailUrlInput.value
-
-    if(title.length < 5 || thumbnailUrlInput.value === '') return
     
     let images = document.getElementsByTagName('img')
     
@@ -113,7 +112,8 @@
         description,
         thumbnail_url,
         categories,
-        tweet: tweet.checked
+        tweet: tweet.checked,
+        pleroma: pleroma.checked
       })
   })).json()
 
