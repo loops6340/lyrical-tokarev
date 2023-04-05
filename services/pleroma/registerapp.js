@@ -3,7 +3,7 @@ const generator = require('megalodon')
 const BASE_URL = process.env.MEGALODON_BASE_URL
 const client = generator.default('pleroma', BASE_URL)
 
-client.registerApp('Multi', {scopes: null})
+client.registerApp('Lyrical Tokarev', {scopes: null})
   .then(appData => {
     console.log("MEGALODON_CLIENT_ID", appData.clientId)
     console.log("MEGALODON_CLIENT_SECRET", appData.clientSecret)
