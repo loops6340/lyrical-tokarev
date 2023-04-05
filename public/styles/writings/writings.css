@@ -230,6 +230,8 @@ user-select: none; /* Standard */
     z-index: 20;
     font-family: junicode;
     color: rgb(161, 152, 152);
+    overflow: scroll;
+    text-overflow: ellipsis;
 }
 
 .article > h3{
@@ -248,8 +250,7 @@ user-select: none; /* Standard */
 }
 
 .description{
-    overflow: hidden;
-    text-overflow: ellipsis;
+    text-align: center;
 }
 
 .categories{

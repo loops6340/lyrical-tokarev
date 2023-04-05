@@ -50,7 +50,7 @@
                 ὅτι σοῦ ἐστιν ἡ βασιλεία καὶ ἡ δύναμις καὶ ἡ δόξα εἰς τοὺς αἰῶνας. ἀμήν.<br>
                 .אָמן</marquee>
 
-                <marquee id="YHVH" scrollamount="20">יהוה</marquee>
+                <!-- <marquee id="YHVH" scrollamount="20">יהוה</marquee> -->
 
                 <marquee id="w_3" scrollamount="60">אונדזער פֿאָטער, װאָס דו ביסט אין הימל,<br>
                     געהײליקט זאָל װערן דײַן נאָמען.<br>
@@ -90,13 +90,13 @@
        <% }else{ %>
         <% for(let i = 0; i < articles.length; i++){ %>
             <% const {title, thumbnail_url, url, description} = articles[i] %>
-            <a class="article"  color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>)
+            <a class="article" style="color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>);
              background-color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, 0.8);" href="/blog/writings/<%=url%>" class="article">
                 <%if(thumbnail_url){ %>
                     <img src="<%=thumbnail_url%>">
                     <h3><%=title%></h3>
                  <% }else{ %>
-                    <p class="description" color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>)><%=description %></p>
+                    <div class="description" style="color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>)"><%-description %></div>
                 <% } %>
             </a>
         <% } %>

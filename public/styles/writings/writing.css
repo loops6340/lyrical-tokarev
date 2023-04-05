@@ -6,6 +6,7 @@
 body{
     background-color: black;
     padding: 20px;
+    overflow-wrap: break-word;
 }
 
 body > *{
