@@ -1,6 +1,6 @@
 require("dotenv").config();
 const {conn} = require('./db/db');
-conn.sync({force: process.env.FORCE === 'true' ? true : false}).then(() => {
+conn.sync({force: process.env.FORCE === 'true' ? true : false, alter: true}).then(() => {
   console.log("DB synced")
 })
 const express = require("express");
