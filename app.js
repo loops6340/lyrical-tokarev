@@ -1,4 +1,7 @@
 require("dotenv").config();
+conn.sync({force: process.env.FORCE === 'true' ? true : false}).then(() => {
+  console.log("DB synced")
+})
 const express = require("express");
 const app = require("express")();
 const httpServer = require("http").createServer(app);
@@ -11,7 +14,6 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors');
 const router = require('./router/index.router')
 
-conn.sync({force: process.env.FORCE === 'true' ? true : false})
 app.use(express.urlencoded({extended: true}))
 app.use(express.json({limit : '50mb'}))
 app.use(cookieParser());
