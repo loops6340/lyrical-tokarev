@@ -57,7 +57,7 @@ module.exports = class ArticlesServices{
 
             if(data.pleroma){
                 try{
-                    const pleroma_id = await (await pleromaSerivce.pleromaArticleMirror(`${description}`, "private")).data
+                    const pleroma_id = await (await pleromaSerivce.pleromaArticleMirror(`${description}`)).data
                     Object.assign(data, {
                         pleroma_id
                     })
