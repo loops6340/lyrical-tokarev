@@ -1,14 +1,14 @@
-require("dotenv").config();
+const {conn} = require('./db/db');
 conn.sync({force: process.env.FORCE === 'true' ? true : false}).then(() => {
   console.log("DB synced")
 })
+require("dotenv").config();
 const express = require("express");
 const app = require("express")();
 const httpServer = require("http").createServer(app);
 const io = require("socket.io")(httpServer);
 const port = process.env.PORT;
 const path = require("path");
-const {conn} = require('./db/db');
 const cookieParser = require('cookie-parser')
 
 const cors = require('cors');
