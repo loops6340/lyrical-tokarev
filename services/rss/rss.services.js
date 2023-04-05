@@ -17,7 +17,7 @@ module.exports = class RssService{
     }
 
     async createRss(){
-        let image_url = 'https://lyricaltokarev.fun/public/images/avatar/Screenshot_12.jpg'
+        let image_url = 'https://lyricaltokarev.fun/public/images/pngs/al_magus.png'
 
         let feed =  new RSS({
             ...this,
