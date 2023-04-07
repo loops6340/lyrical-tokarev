@@ -16,6 +16,10 @@ header{
     text-decoration: none;
 }
 
+.top-sprites > *{
+    display: flex;
+}
+
 .top-sprite > p{
     opacity: 0;
     color: white;
@@ -40,6 +44,10 @@ header{
     margin-left: 9px;
     margin-right: 9px;
     text-decoration: none
+}
+
+.top-sprite > img{
+    image-rendering: pixelated;
 }
 
 .right-top-sprites > .top-sprite, .left-top-sprites > .top-sprite{
