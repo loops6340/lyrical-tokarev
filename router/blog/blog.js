@@ -9,7 +9,7 @@ const articlesServices = new ArticlesServices()
 
 router.get('/', async (req, res) => {
     try{
-        const data = await getAndFilterArticles(Math.floor(Math.random() * lastPage), req.query)
+        const data = await getAndFilterArticles(Math.floor(Math.random() * lastPage))
         return await renderWithPaginatorAndCategories(data, res)
     }catch(e){
         console.error(e)
@@ -80,10 +80,12 @@ router.post('/post', isAdmin, async (req, res) => {
 })
 
 
-const getAndFilterArticles = async (page = 0, queries = []) => {
+const getAndFilterArticles = async (page = 0, queries = {}) => {
     let filters = []
-    for(const param in queries){
-        filters.push(param)
+    let query = Object.keys(queries)[0] || ""
+    query = query.split('?')
+    for(const param of query){
+        if(param !== '') filters.push(param)
     }
     const articlesAndCount = await articlesServices.getAllArticles(page, filters, true)
     const _lastPage = Math.floor(articlesAndCount.count/articlesServices.paginated)

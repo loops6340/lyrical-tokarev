@@ -92,23 +92,27 @@ module.exports = class ArticlesServices{
 
     async getAllArticles(page = 0, categories = [], returnCount = false){
 
+        // console.log(categories)
+
         let unmappedArticles = {}
 
-        const query = {include: {model: Category}, limit: this.paginated, offset: page*this.paginated, order: [['createdAt', 'DESC']]}
+        const query = {where: {hidden: false}, include: {model: Category}, limit: this.paginated, offset: page*this.paginated, order: [['createdAt', 'DESC']]}
 
         if(categories.length){
             for(const name of categories){
+                console.log(name)
                 query.include.where = {name}
-                let foundArticles = await Article.findAndCountAll(query)
-                const {rows, count} = foundArticles
-                unmappedArticles = {count, rows: unmappedArticles.rows ? [...unmappedArticles.rows, ...rows] : rows}
             }
+            let foundArticles = await Article.findAndCountAll(query)
+            const {rows, count} = foundArticles
+            unmappedArticles = {count, rows: unmappedArticles.rows ? [...unmappedArticles.rows, ...rows] : rows}
         }
         else unmappedArticles = await Article.findAndCountAll(query)
         const {rows, count} = unmappedArticles
         const articles = rows.map(i => {
             return {
                 ...i.dataValues,
+                url: encodeURIComponent(i.dataValues.url),
                 categories: i.dataValues.categories.map(i => {return i.dataValues.name})
             }
         })

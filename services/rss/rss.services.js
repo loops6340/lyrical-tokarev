@@ -5,7 +5,7 @@ const articlesServices = new ArticlesServices()
 module.exports = class RssService{
     constructor(){
         this.title = 'Lyrical Tokarev - Kill Them All',
-        this.description = 'With Righteous Anger In Our Heart',
+        this.description = 'With Righteous Anger In Our Hearts',
         this.feed_url = 'https://lyricaltokarev.fun/blog/rss',
         this.site_url = 'https://lyricaltokarev.fun',
         this.categories = ['Jesus', 'Justice', 'Redemption']

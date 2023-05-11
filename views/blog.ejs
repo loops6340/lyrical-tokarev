@@ -19,14 +19,19 @@
         <div class="paths">
             <a href="/blog/writings">Blog</a>
         </div>
-        <% if(articles.length > 2){ %>
+        <% if(articles.length > 12){ %>
         <h2>Recent</h2>
         <div class="articlesContainer">
     <% for(let i = 0; i < 6; i++){ %>
-       <% const {title, thumbnail_url, url} = articles[i] %>
+        <%console.log(articles[i])%>
+       <% const {url} = articles[i] %>
        <a style="background-color: rgba(<%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, <%=parseInt(Math.random() * 255)%>, 0.8);" href="/blog/writings/<%=url%>" class="article">
-            <img src="<%=thumbnail_url%>">
-            <h3><%=title%></h3>
+            <% if (articles[i].hasOwnProperty("thumbnail_url")){ %>
+                <img src="<%=articles[i].thumbnail_url%>">
+           <% } %>
+            <% if (articles[i].hasOwnProperty("title")){ %>
+                <h3><%=articles[i].title%></h3>
+           <% } %>
        </a>
    <% } %>
    <%}%>

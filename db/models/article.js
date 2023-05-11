@@ -41,6 +41,10 @@ const { DataTypes } = require("sequelize");
         type: DataTypes.STRING,
         allowNull: true,
         defaultValue: null
+    },
+    hidden: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
     }
  },
  {
