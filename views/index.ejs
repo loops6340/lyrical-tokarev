@@ -93,6 +93,17 @@
                             <small>FAR EASTERN DRAWINGS ON THE COMPUTER SCREEN?????? NO WAY!!!!</small>
                             <p>BESIDES THAT, THIS IS JUST A COMPLETELY SELF-HOSTED PERSONAL WEBSITE ON DA INTER NET, MADE TO EXPERIMENT AND TO HAVE A PLACE TO PUT UP STUFF THAT ISN'T GAY YOUTUBE FACEBOOK TWITTER AMAN ZONE NETFLIX DISCORD.</p>
                             <p>I WAS GOING TO EXPLAIN WHY SELF-HOSTING IS THE WAY AND WHY YOU SHOULDN'T DEPEND ON ANY "SERVICE" OR "SOCIAL MEDIA" MADE TO SELL YOUR DATA, MAKE YOU ANGRY AND GIVE YOU NO POWER OVER WHAT YOU'RE DOING WHATSOEVER, BUT THAT'S SOMETHING FOR A FULL ARTICLES AND IF YOU ENDED UP HERE <a href="https://www.youtube.com/watch?v=bdKZVIGRAKQ">YOU PROBABLY HEARD OF IT A THOUSAND TIMES.</a></p>
+                            <% if(ads.length){ %>
+                                <div class="bottom">
+                                    <div class="ads">
+                                        <% for(let i = 0; i < 1; i++){ %>
+                                            <% const a = ads[i] %>
+                                            <%- include('components/buttons/button', {b: a}) %>
+                                       <% } %>
+                                    </div>
+                                </div>
+                
+                                <% } %>
                             <p>83% OF THE FUNCTIONALITIES ON THIS WEBSITE WERE SELF-IMPLMENTED AND DON'T DEPEND ON ANY EXTERNAL API AND I ENCOURAGE EVERYONE WHO READS THIS TO DO SO.</p>
                             <p>I'VE SET UP A BLOG SYSTEM WITH AN RSS FEED (NO ONE CARES ABOUT THAT BUT WHATEVER) WHERE I'LL WRITE STUFF WHENEVER I HAVE TO. THERE'S ALSO A GUESTBOOK SYSTEM AND THATS IT FOR NOW I GUESS.</p>
                             <p>I'LL LIST SOME OF THE TOOLS I MADE WHICH I DON'T KNOW WHERE TO PUT YET</p>
@@ -134,17 +145,7 @@
                     </div>
                 </div>
 
-                <% if(ads.length){ %>
-                <div class="bottom">
-                    <div class="ads">
-                        <% for(let i = 0; i < 3; i++){ %>
-                            <% const a = ads[i] %>
-                            <%- include('components/buttons/button', {b: a}) %>
-                       <% } %>
-                    </div>
-                </div>
 
-                <% } %>
 
     </div>
 

@@ -18,7 +18,9 @@ router.get("/", async (req, res) => {
 
     const mutuals = shuffle( await (await resourcesService.getAllButtonsAndBannersAndOrderByTag(['button', 'ring'])).data)
 
-    const ads = shuffle( await (await resourcesService.getAllButtonsAndBannersAndOrderByTag(['ad'])).data)
+    const ads = shuffle( await (await resourcesService.getAllButtonsAndBannersAndOrderByTag(['ad'])).data).filter(a => {
+      return a.width > 200 && a.width < 500 && a.height < 500 && a.height < 500
+    })
   
     const ip = requestIp.getClientIp(req)
   

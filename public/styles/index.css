@@ -89,6 +89,7 @@ main{
 }
 
 .content{
+    margin-top: 10px;
     flex-direction: row;
 }
 
@@ -128,7 +129,7 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 13px;
+    margin-top: 3px;
     width: 338px;
     margin-left: 10%;
     background: url("/public/images/containerbgs/reimusweep.gif");
@@ -146,7 +147,7 @@ main{
 }
 
 .buttons{
-    margin-top: 5px;
+    margin-top: 15px;
     margin-left: 5%;
     display: flex;
 }
