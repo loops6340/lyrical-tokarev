@@ -12,6 +12,7 @@ header{
     height: 217px;
     background-repeat: no-repeat, repeat-x;
     background-position: 50%, 53%;
+    image-rendering: pixelated;
 }
 
 #rss{
