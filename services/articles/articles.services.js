@@ -100,11 +100,26 @@ module.exports = class ArticlesServices{
 
         if(categories.length){
             for(const name of categories){
-                console.log(name)
                 query.include.where = {name}
             }
             let foundArticles = await Article.findAndCountAll(query)
-            const {rows, count} = foundArticles
+            let {rows, count} = foundArticles
+            const matchingHiddenQuery = {where: {hidden: true}, include: {model: Category}}
+            const hidden = await Article.findAndCountAll(matchingHiddenQuery)
+            const filteredHidden = [] 
+            hidden.rows.forEach(i => {
+                let matching = true
+                if(i.dataValues.categories.length === categories.length){
+                    i.dataValues.categories.forEach(c => {
+                        if(!categories.includes(c.dataValues.name)) matching = false
+                    })
+                }else{
+                    matching = false
+                }
+                if(matching) filteredHidden.push(i)
+
+            })
+            rows = [...rows, ...filteredHidden]
             unmappedArticles = {count, rows: unmappedArticles.rows ? [...unmappedArticles.rows, ...rows] : rows}
         }
         else unmappedArticles = await Article.findAndCountAll(query)
