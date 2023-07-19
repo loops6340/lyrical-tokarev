@@ -25,24 +25,30 @@ body{
 
 #text1{
     animation-name: slide-right;
-    animation-duration: 1s;
-    animation: slide-right 1s normal steps(12);
+    animation: slide-right 1.73s normal steps(30);
     visibility: visible;
 }
 
 #text2{
     top: 20%;
-    left: 20%;
+    left: 10%;
+    animation: slide-left 1.73s normal steps(30);
+    animation-play-state: paused;
+    visibility: visible;
 }
 
 #text3{
     top: 40%;
+    animation: slide-right 1.73s normal steps(30);
+    animation-play-state: paused;
 }
 
 
 #text4{
     top: 60%;
-    left: 20%;
+    left: 10%;
+    animation: slide-left 1.73s normal steps(30);
+    animation-play-state: paused;
 }
 
 @keyframes slide-right{
