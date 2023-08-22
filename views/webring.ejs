@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("components/head", {title: "WEBRING", stylesPath: "/public/styles/lainring.css", metaImagePath: "/public/images/lyricaltokarev.fun.jpg"}) %>
+<body>
+    <%- include("components/nav") %>
+    <p>WITHOUT A BANNER OF MY OWN YET</p>
+    <h1>LAINCHAN WEBRING</h1>
+    <div id="alive"></div>
+    <h2>Tor Sites</h2>
+    <div id="tor"></div>
+    <h2>I2P Sites</h2>
+    <div id="i2p"></div>
+    <h2>Offline Sites</h2>
+    <div id="dead"></div>
+    <h2>RSS Feeds</h2>
+    <pre>
+        <code id="rss">
+
+        </code>
+    </pre>
+    <p>This site uses <a href="https://0x19.org/lainring/">0x19's</a> copy of the ring.</p>
+    <script src="/public/scripts/webring/lainwebring.js"></script>
+</body>
+</html>

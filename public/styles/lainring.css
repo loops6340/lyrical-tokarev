@@ -1,0 +1,27 @@
+body{
+    background-color: black;
+    text-align: center;
+}
+
+h1, h2, code, p{
+    color: white;
+}
+
+.site-container{
+    display: inline-block;
+}
+
+#rss, pre{
+    text-align: left;
+}
+
+#rss{
+    margin-left: 10px;
+}
+
+pre {
+    border: 1px solid white;
+    padding: 1%;
+    overflow: auto;
+    font-size: 12px;
+}

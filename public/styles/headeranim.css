@@ -77,7 +77,10 @@ header{
     animation: enterleft 3.5s linear
 }
 
-
+#ring > img{
+    width: 41px;
+    height: 44px;
+}
 
 
 
