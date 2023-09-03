@@ -123,6 +123,8 @@
                                 <img src="/public/images/buttons/lyricaltokarevbutton.gif">
                             </a>
                         </div>
+                        <br>
+                        <p id="update"></p>
                     </main>
 
                     <div class="blinkies">
@@ -157,6 +159,13 @@
         const online = document.getElementById("online");
         online.addEventListener("mouseover", () => {
             window.open("/public/images/lyricaltokarev.fun.jpg", "_blank")
+        })
+        const p = document.getElementById("update")
+        fetch("https://api.github.com/repos/Widenyo/lyrical-tokarev/commits/main").then(r => {
+            r.json().then(s => {
+                const days = Math.ceil((Date.now() - Date.parse(s.commit.author.date)) / (1000 * 3600 * 24))
+                p.innerHTML = `Last updated ${days} day${days === 1 ? "" : "s"} ago - ${s.commit.message}`
+            })
         })
     </script>
 </body>
