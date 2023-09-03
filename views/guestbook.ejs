@@ -34,7 +34,7 @@
         <div class="comment">
                     <div class="namepfp">
                         <img src="<%=c.pic%>">
-                        <p><%=c.name%></p>
+                        <p><%-c.name%></p>
                         <p><%=c.createdAt.toLocaleString()%></p>
                     </div>
               <div class="comment_info">
@@ -51,6 +51,15 @@
                <% } %>
             </div>
             <p class="message"><%=c.message%></p>
+            <%if (c.reply){ %>
+                <p class="message"><%-c.reply%></p>
+           <% } %>
+           <% if(admin){ %>
+            <form method="POST" action="/guestbook/reply/<%=c.id%>">
+                <textarea name="reply"></textarea>
+                <input type="submit"></input>
+            </form>
+          <% }%> 
         </div>
    <% }) %>
    <% } %>

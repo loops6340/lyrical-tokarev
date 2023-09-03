@@ -6,11 +6,14 @@ const axios = require('axios');
 const validateEmail = require('../../utils/validateEmail');
 const FilterService = require('../../services/filter/filter.services');
 const ResourcesService = require('../../services/resources/resources.services');
+const { isAdmin } = require('../../controllers/authController');
 const filter = new FilterService()
 const resourceService = new ResourcesService()
 
-router.get('/', async (_req, res) => {
-    let pics = await (await resourceService.getAvatars()).data
+router.get('/', async (req, res) => {
+    const {pass} = req.cookies
+    let admin = false
+    let pics = await (await resourceService.getAvatars()).data || []
     const ads = await (await resourceService.getAllButtonsAndBannersAndOrderByTag(["ad"], [], ["banner"])).data
     const randomAd = ads.length > 0 ? ads[Math.floor(Math.random()*ads.length)] : null
     const comments = await (await Guestbook_comment.findAll({include: Visitor, order: [['id', 'DESC']]})).map(c => {
@@ -18,7 +21,8 @@ router.get('/', async (_req, res) => {
     obj.dataValues.pic = pics.length > 0 ? pics.find(p => p.filename === obj.dataValues.pic).url : '/public/images/portraits/alicedefeat.png'
     return obj.dataValues
     })
-    return res.render('guestbook', {comments, randomAd})
+    if(pass === process.env.ADMIN_PASS) admin = true
+    return res.render('guestbook', {comments, randomAd, admin})
 })
 
 router.post('/', async (req, res) => {
@@ -43,7 +47,7 @@ router.post('/', async (req, res) => {
 
   if(!pic){
     let pics = await (await resourceService.getAvatars()).data
-    pic = pics[Math.floor(Math.random()*pics.length)].filename || null
+    pic = pics.length ? pics[Math.floor(Math.random()*pics.length)].filename : null
   }
 
   message = filter.filter(message)
@@ -63,6 +67,19 @@ router.post('/', async (req, res) => {
     console.log(e)
     return res.send(e.message)
   }
+  })
+
+  router.post('/reply/:id', isAdmin, (req, res) => {
+    const {reply} = req.body
+    if(!reply) return res.send("falta mensaje xd")
+    const {id} = req.params
+    Guestbook_comment.update({
+      reply
+    },
+    {
+      where: {id}
+    })
+    return res.redirect('/guestbook')
   })
 
 module.exports = router;

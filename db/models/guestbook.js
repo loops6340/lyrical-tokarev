@@ -23,6 +23,11 @@ const { DataTypes } = require("sequelize");
         type: DataTypes.STRING,
         allowNull: true,
         default: null
+    },
+    reply: {
+        type: DataTypes.STRING(5000),
+        allowNull: true,
+        default: null
     }
  });
 };
