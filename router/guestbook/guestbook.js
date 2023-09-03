@@ -7,6 +7,7 @@ const validateEmail = require('../../utils/validateEmail');
 const FilterService = require('../../services/filter/filter.services');
 const ResourcesService = require('../../services/resources/resources.services');
 const { isAdmin } = require('../../controllers/authController');
+const { Op } = require('sequelize');
 const filter = new FilterService()
 const resourceService = new ResourcesService()
 
@@ -28,14 +29,24 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   let {name, website, email, message, member, pic} = req.body
   try{
+    const ip = requestIp.getClientIp(req)
+    const visitor = await Visitor.findOne({where: {
+      ip: ip
+    }})
+    const currentDate = new Date();
+    const oneWeekAgo = new Date(currentDate - 7 * 24 * 60 * 60 * 1000);
+    const commentsMade1WeekAgo = await Guestbook_comment.findAll({where:{visitorId: visitor.id, createdAt: {[Op.gte]: oneWeekAgo}}, order: [['createdAt', 'DESC']]})
+    if(commentsMade1WeekAgo.length > 0){
+      const comment = commentsMade1WeekAgo[0];
+      const differenceInDays = Math.floor(
+      7 - (currentDate - comment.createdAt) / (1000 * 60 * 60 * 24)
+      );
+      return res.send(`You need to wait ${differenceInDays} day${differenceInDays === 1 ? "" : "s"} to comment again.`)
+    }
   if(!member || member === " ") return res.send('YOU HAVE TO TURN AT LEAST ONE MEMBER OF YOUR FAMILY INTO A MINION (DESPICABLE ME)')
   if(!message || message.length === " ") return res.send('MESSAGE CANT BE EMPTY!!!!!!!!')
   if(!name) name = 'anon'
   if(!validateEmail(email)) email = null
-  const ip = requestIp.getClientIp(req)
-  const visitor = await Visitor.findOne({where: {
-    ip: ip
-  }})
   if(!visitor) return res.redirect('https://lyricaltokarev.neocities.org')
   try{
   const webCheckReq = await axios.get(website)
