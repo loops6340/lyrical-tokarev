@@ -8,7 +8,7 @@ const login = require('./login/login')
 const chat = require('./chat/chat')
 const inside = require('./inside/inside')
 const webring = require('./webring/webring')
-
+const account = require('./account/account')
 router.use('/', index)
 .use('/guestbook', guestbook)
 .use('/blog', blog)
@@ -16,7 +16,7 @@ router.use('/', index)
 .use('/chat', chat)
 .use('/inside', inside)
 .use('/webring', webring)
-
+.use("/account", account)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

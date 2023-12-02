@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("components/head", {title: "THE INDEX", stylesPath: ["/public/styles/account.css"], metaImagePath: "/public/images/lyricaltokarev.fun.jpg"}) %>
+<head>
+    <script src="/public/scripts/crawler.js"></script>
+</head>
+<body>
+
+    <header>
+
+        <div class="visitors">
+            <img id="kohakuvis" src="/public/images/transparent-gifs/kohaku-walk.gif">
+                <div id="blackboard">
+                    <div class="blackboard-text">
+                        <span>SITE VISITORS</span>
+                        <span>THANK U!!!</span>
+                    </div>
+                </div>
+            <img id="kohakuvis" src="/public/images/transparent-gifs/kohaku-walk.gif">
+        </div>
+
+        <%- include("components/nav") %>
+    </header>
+
+    <div class="form-container content">
+
+        <form id="register-form" class="form" action="/account/login" method="POST">
+            <input type="text" name="username" required>
+            <input type="password" name="password" required id="">
+            <button>Enviar</button>
+            <% if(error !== null){ %>
+                <span class="form-error">
+                    <%= error %>
+                </span>            
+            <% } %>  
+            
+
+
+
+        </form>
+    </div>
+
+    <div id="puni">
+        <p class="speech">LYRICALTOKAREV.FUN IS ONLINE!!!!</p>
+        <img src="/public/images/punifig.png">
+    </div>
+
+    <div id="yumefixed">
+        <img src="/public/images/portraits/yume.png">
+    </div>
+    <script src="/public/scripts/marquee.js"></script>
+    <script>
+        // const registerForm = document.getElementById("register-form")
+        
+        // registerForm.addEventListener("submit", async (e) => {
+        //     e.preventDefault()
+        //     const formData = new FormData(registerForm)
+        //     const textImage = await formData.get("image")?.text()
+        //     const response = fetch('/account/register', {
+        //         method: "POST",
+        //         body: JSON.stringify({
+        //             name: formData.get("username"),
+        //             password: formData.get("password"),
+        //             image: textImage
+        //         }),
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         }
+        //     })
+
+        // })
+
+        // const online = document.getElementById("online");
+        // online.addEventListener("mouseover", () => {
+        //     window.open("/public/images/lyricaltokarev.fun.jpg", "_blank")
+        // })
+        // const p = document.getElementById("update")
+        // fetch("https://api.github.com/repos/Widenyo/lyrical-tokarev/commits/main").then(r => {
+        //     r.json().then(s => {
+        //         const days = Math.ceil((Date.now() - Date.parse(s.commit.author.date)) / (1000 * 3600 * 24))
+        //         p.innerHTML = `Last updated ${days} day${days === 1 ? "" : "s"} ago - ${s.commit.message}`
+        //     })
+        // })
+    </script>
+</body>
+</html>
